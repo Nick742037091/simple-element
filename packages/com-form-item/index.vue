@@ -1,5 +1,5 @@
 <template>
-  <div class="common-form-item">
+  <div class="com-form-item">
     <el-tooltip
       v-if="showToolTip"
       :content="toolTipLabel || label"
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss">
-.common-form-item {
+.com-form-item {
   padding: 0 10px;
 }
 .medium-tooltip {

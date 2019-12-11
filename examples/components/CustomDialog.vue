@@ -1,5 +1,5 @@
 <template>
-  <common-dialog
+  <com-dialog
     :visible="show"
     :before-close="close"
     title="Form表单标题"
@@ -14,12 +14,12 @@
       @submit="submit"
       @cancel="close"
     />
-  </common-dialog>
+  </com-dialog>
 </template>
 
 <script>
-import CommonDialog from '@pkg/common-dialog/main'
-import ComForm from '@pkg/common-form/main'
+import ComDialog from '@pkg/com-dialog'
+import ComForm from '@pkg/com-form'
 import formRules, { getRangeNumber } from '@/utils/formRules'
 
 // 表单选项
@@ -82,7 +82,7 @@ const defaultForm = {
 
 export default {
   name: 'CustomDialog',
-  components: { CommonDialog, ComForm },
+  components: { ComDialog, ComForm },
 
   model: {
     prop: 'show',

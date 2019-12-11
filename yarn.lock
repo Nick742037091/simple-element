@@ -5990,6 +5990,11 @@ modify-values@^1.0.0:
   resolved "https://registry.npm.taobao.org/modify-values/download/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha1-s5OfpgVUZHTj4+PGPWS9Q7TuYCI=
 
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.npm.taobao.org/moment/download/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha1-DQVdU/UFKqZTyfbraLtdEr9cK1s=
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/move-concurrently/download/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -8159,6 +8164,11 @@ sort-keys@^1.0.0:
   integrity sha1-RBttTTRnmPG05J6JIK37oOVD+a0=
   dependencies:
     is-plain-obj "^1.0.0"
+
+sortablejs@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.10.1.tgz#3d52b00f871be00f00f84d99a60d120bf3dfe52c"
+  integrity sha1-PVKwD4cb4A8A+E2Zpg0SC/Pf5Sw=
 
 source-list-map@^2.0.0:
   version "2.0.1"

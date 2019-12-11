@@ -4,7 +4,7 @@
     :before-close="beforeClose || close"
     :width="width"
     :close-on-click-modal="closeOnClickModal"
-    custom-class="common-dialog"
+    custom-class="com-dialog"
     v-bind="$attrs"
     top="0px"
   >
@@ -107,7 +107,7 @@ export default {
 <style lang="scss">
 @import '@/assets/css/flex.scss';
 @import '@/assets/css/variable.scss';
-.common-dialog {
+.com-dialog {
   @include absolute-center;
   position: absolute !important;
   .dialog-content {
@@ -123,7 +123,7 @@ export default {
     }
   }
 }
-.common-dialog-fullscreen {
+.com-dialog-fullscreen {
   width: 100% !important;
   left: 0;
   right: 0;

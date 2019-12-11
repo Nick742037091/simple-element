@@ -60,10 +60,10 @@ Vue.use(SimpleElement)
 | cancelBtnLabel | string  | '取消'  |                          取消按钮文字                          |
 |    rowList     |  array  |   []    |             可根据该属性自动生成表单元素,详情如下              |
 
-|  事件  |     描述     | 参数 |
-| :----: | :----------: | :--: |
-| submit | 点击确认按钮 |  -   |
-| cancel | 点击取消按钮 |  -   |
+|  事件  |     描述     | 参数  |
+| :----: | :----------: | :---: |
+| submit | 点击确认按钮 |   -   |
+| cancel | 点击取消按钮 |   -   |
 
 #### rowList 属性为二维数组，元素可为以下选项
 
@@ -115,3 +115,5 @@ Vue.use(SimpleElement)
 |   required    | boolean |  false  |                 是否必需                  |
 |  labelWidth   | string  | '100px' |             表单元素标题宽度              |
 | labelPosition | string  | 'left'  | 表单元素标题位置，可选值为 left/right/top |
+
+### com-table

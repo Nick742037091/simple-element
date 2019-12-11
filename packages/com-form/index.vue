@@ -45,8 +45,7 @@
                     :key="`${item.prop}-radio-${index}`"
                     :label="opt.value"
                     :disabled="opt.disabled"
-                    >{{ opt.label }}
-                  </el-radio>
+                  >{{ opt.label }}</el-radio>
                 </template>
               </el-radio-group>
               <component
@@ -58,12 +57,7 @@
             </template>
           </com-form-item>
         </div>
-        <slot
-          v-else-if="row.render"
-          name="render-row"
-          :type="row.type"
-          :formData="form"
-        />
+        <slot v-else-if="row.render" name="render-row" :type="row.type" :formData="form" />
       </div>
     </template>
 
@@ -74,12 +68,8 @@
         native-type="submit"
         :loading="loading"
         @click="submit"
-      >
-        {{ submitBtnLabel }}
-      </el-button>
-      <el-button size="small" @click="cancel">
-        {{ cancelBtnLabel }}
-      </el-button>
+      >{{ submitBtnLabel }}</el-button>
+      <el-button size="small" @click="cancel">{{ cancelBtnLabel }}</el-button>
     </div>
     <slot v-else name="bottom-btn" />
   </el-form>
@@ -87,7 +77,8 @@
 
 <script>
 import { getPlaceholder } from './placeholder.js'
-import ComFormItem from '../common-form-item/main'
+import ComFormItem from '../com-form-item'
+import { error } from '@/utils'
 import { Message } from 'element-ui'
 
 const ClearableType = ['select', 'input', 'input-number', 'date-picker']
@@ -248,10 +239,7 @@ export default {
         await this.$refs['el-form'].validate()
         return true
       } catch (e) {
-        Message.error({
-          message: '填写的内容有误',
-          customClass: 'com-form-validate-error'
-        })
+        error('填写的内容有误', { customClass: 'com-form-validate-error' })
         return false
       }
     },
@@ -281,7 +269,7 @@ export default {
 <style lang="scss">
 @import '@/assets/css/flex.scss';
 .com-form-validate-error {
-  z-index: 3000;
+  z-index: 3000 !important;
 }
 .com-form-row {
   @include flex-row;

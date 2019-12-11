@@ -110,3 +110,75 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.flex {
+  @include flex;
+}
+
+.flex-main {
+  @include flex-main;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-row {
+  @include flex-row;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.row-center {
+  @include row-center;
+}
+
+.column-center {
+  @include column-center;
+}
+
+.flex-wrap {
+  @include flex-wrap;
+}
+
+.justify-center {
+  @include justify-center;
+}
+
+.justify-between {
+  @include justify-between;
+}
+
+.justify-around {
+  @include justify-around;
+}
+
+.align-start {
+  @include align-start;
+}
+
+.align-stretch {
+  @include align-stretch;
+}
+
+.self-start {
+  @include self-start;
+}
+
+.self-end {
+  @include self-end;
+}
+
+.self-center {
+  @include self-center;
+}
+
+.self-stretch {
+  @include self-stretch;
+}
+
+.self-stretch {
+  @include self-stretch;
+}
