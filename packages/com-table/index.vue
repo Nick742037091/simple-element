@@ -90,7 +90,13 @@
       </div>
     </div>
     <el-drawer :visible.sync="showMore" title="更多选项" v-bind="getMoreBlockProp()">
-      <slot name="more-options"></slot>
+      <div class="more-options-drawer flex-main">
+        <div class="flex-main">
+          <slot name="more-options"></slot>
+        </div>
+
+        <el-button type="primary" @click="onMoreSumbit">确定</el-button>
+      </div>
     </el-drawer>
     <!-- 表格区域 -->
     <el-table
@@ -496,6 +502,11 @@ export default {
       }
       this.$emit('onMutilDel')
     },
+    // 更多选项drawer确认按钮
+    onMoreSumbit() {
+      this.showMore = false
+      this.$emit('onMoreSumbit')
+    },
     setDraggable() {
       const el = document.querySelectorAll(
         '.el-table__body-wrapper > table > tbody'
@@ -559,6 +570,10 @@ export default {
     margin-top: 30px;
   }
 }
+.more-options-drawer {
+  @include flex-column;
+  padding: 10px 20px 20px;
+}
 </style>
 
 <style lang="scss">
@@ -577,6 +592,10 @@ export default {
       font-size: 16px !important;
       color: black !important;
     }
+  }
+
+  .el-drawer__body {
+    @include flex-column;
   }
 }
 </style>

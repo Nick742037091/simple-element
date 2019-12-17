@@ -23,6 +23,7 @@
       draggable
       @getList="getList"
       @onAdd="showDialog = true"
+      @onMoreSumbit="getList"
     >
       <div slot="more-options">测试</div>
       <template slot="table-custom" slot-scope="{row,colKey}">
