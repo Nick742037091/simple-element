@@ -505,7 +505,7 @@ export default {
     // 更多选项drawer确认按钮
     onMoreSumbit() {
       this.showMore = false
-      this.$emit('onMoreSumbit')
+      this.$emit('onMoreSubmit')
     },
     setDraggable() {
       const el = document.querySelectorAll(
