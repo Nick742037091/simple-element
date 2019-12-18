@@ -25,7 +25,7 @@
       @onAdd="showDialog = true"
       @onMoreSubmit="getList"
     >
-      <div slot="more-options">测试</div>
+      <div slot="search-middle">测试</div>
       <template slot="table-custom" slot-scope="{row,colKey}">
         <div v-if="colKey === 'operation'">
           <el-button type="primary" size="small">编辑</el-button>

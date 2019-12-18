@@ -42,7 +42,10 @@
           @click="showMore = !showMore"
         >更多选项</el-button>
       </div>
-      <slot name="search-middle" />
+      <div class="middle-block">
+        <slot name="search-middle" />
+      </div>
+
       <div class="right-block">
         <el-select
           v-if="showHide"
@@ -530,12 +533,12 @@ export default {
 @import '@/assets/css/flex.scss';
 .search-bar {
   @include flex-row;
-  @include justify-between;
+  @include align-center;
   @include flex-wrap;
+  padding-bottom: 10px;
   .left-block {
     @include flex-row;
     @include align-center;
-    padding-bottom: 10px;
 
     .search-key,
     .search-input {
@@ -548,10 +551,13 @@ export default {
     }
   }
 
+  .middle-block {
+    @include flex-main;
+  }
+
   .right-block {
     @include flex-row;
     @include align-center;
-    padding-bottom: 10px;
     .hidden-select,
     .hidden-reset,
     .add-btn {
