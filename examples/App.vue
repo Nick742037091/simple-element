@@ -21,12 +21,13 @@
       show-add
       show-mutil-del
       draggable
+      :auto-reset="false"
       @getList="getList"
       @onAdd="showDialog = true"
       @onMoreSubmit="getList"
     >
-      <div slot="search-middle">测试</div>
-      <template slot="table-custom" slot-scope="{row,colKey}">
+      <div slot="search-middle">搜索中间插槽</div>
+      <template slot="table-custom" slot-scope="{ row, colKey }">
         <div v-if="colKey === 'operation'">
           <el-button type="primary" size="small">编辑</el-button>
         </div>

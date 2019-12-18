@@ -32,56 +32,23 @@
           class="search-btn"
           icon="el-icon-search"
           @click="onSearch"
-        >搜索</el-button>
+          >搜索</el-button
+        >
         <el-button
           v-if="showMoreBtn"
-          :icon="showMore?'el-icon-s-unfold':'el-icon-s-fold'"
+          :icon="showMore ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
           type="info"
           class="show-more-btn"
           :size="controlSize"
           @click="showMore = !showMore"
-        >更多选项</el-button>
+          >更多选项</el-button
+        >
       </div>
       <div class="middle-block">
         <slot name="search-middle" />
       </div>
 
       <div class="right-block">
-        <el-select
-          v-if="showHide"
-          :size="controlSize"
-          v-model="hiddenTableColumn"
-          placeholder="请选择隐藏字段"
-          class="hidden-select"
-          multiple
-          collapse-tags
-          filterable
-        >
-          <el-option
-            v-for="(item, index) in defaultTableColumn"
-            :key="'hidden-column-index-' + index"
-            :label="getColumnLabel(item)"
-            :value="item"
-          />
-        </el-select>
-        <el-dropdown
-          v-if="showHide"
-          :size="controlSize"
-          class="hidden-reset"
-          @command="onResetCommand"
-        >
-          <el-button
-            type="primary"
-            :size="controlSize"
-            class="hidden-reset-btn"
-            icon="el-icon-arrow-down"
-          >重置</el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="filter" icon="el-icon-arrow-down">重置筛选项</el-dropdown-item>
-            <el-dropdown-item command="search" divided icon="el-icon-search">重置搜索</el-dropdown-item>
-            <el-dropdown-item command="sort" divided icon="el-icon-sort">重置排序</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
         <el-button
           v-if="showAdd"
           type="success"
@@ -89,16 +56,65 @@
           class="add-btn"
           icon="el-icon-circle-plus-outline"
           @click="$emit('onAdd')"
-        >新增</el-button>
+          >新增</el-button
+        >
       </div>
     </div>
-    <el-drawer :visible.sync="showMore" title="更多选项" v-bind="getMoreBlockProp()">
+    <el-drawer
+      :visible.sync="showMore"
+      title="更多选项"
+      v-bind="getMoreBlockProp()"
+    >
       <div class="more-options-drawer flex-main">
         <div class="flex-main">
+          <div class="hidden-select-block">
+            <div>隐藏字段</div>
+            <el-select
+              v-if="showHide"
+              :size="controlSize"
+              v-model="hiddenTableColumn"
+              placeholder="请选择隐藏字段"
+              class="hidden-select"
+              multiple
+              collapse-tags
+              filterable
+            >
+              <el-option
+                v-for="(item, index) in defaultTableColumn"
+                :key="'hidden-column-index-' + index"
+                :label="getColumnLabel(item)"
+                :value="item"
+              />
+            </el-select>
+          </div>
           <slot name="more-options"></slot>
         </div>
 
-        <el-button type="primary" @click="onMoreSumbit">确定</el-button>
+        <div class="btn-block">
+          <el-dropdown
+            v-if="showHide"
+            :size="controlSize"
+            type="info"
+            class="hidden-reset"
+            split-button
+            @command="onResetCommand"
+            @click="onResetClick"
+          >
+            重置
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="filter" icon="el-icon-arrow-down">
+                重置筛选项
+              </el-dropdown-item>
+              <el-dropdown-item command="search" divided icon="el-icon-search">
+                重置搜索
+              </el-dropdown-item>
+              <el-dropdown-item command="sort" divided icon="el-icon-sort">
+                重置排序
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <el-button type="primary" @click="onMoreSumbit">确定</el-button>
+        </div>
       </div>
     </el-drawer>
     <!-- 表格区域 -->
@@ -131,7 +147,9 @@
           :formatter="tableFormatter"
           :filters="tableFilters && tableFilters(val.field)"
           :filtered-value="filterValue(val.field)"
-          :filter-multiple="tableFilterMultiple && tableFilterMultiple[val.field]"
+          :filter-multiple="
+            tableFilterMultiple && tableFilterMultiple[val.field]
+          "
           :sortable="val.sortable"
           :width="val.width"
           :key="'table-column-' + key"
@@ -158,7 +176,9 @@
           :formatter="tableFormatter"
           :filters="tableFilters && tableFilters(val.field)"
           :filtered-value="filterValue(val.field)"
-          :filter-multiple="tableFilterMultiple && tableFilterMultiple[val.field]"
+          :filter-multiple="
+            tableFilterMultiple && tableFilterMultiple[val.field]
+          "
           :sortable="val.sortable"
           :width="val.width"
           :key="'table-column-' + key"
@@ -168,7 +188,13 @@
     <!-- 底部分页导航栏 -->
     <div v-if="showPagination" class="pagination-container">
       <div class="flex-main flex-row">
-        <el-button v-if="showMutilDel" :size="controlSize" type="danger" @click="onMutilDelete">批量删除</el-button>
+        <el-button
+          v-if="showMutilDel"
+          :size="controlSize"
+          type="danger"
+          @click="onMutilDelete"
+          >批量删除</el-button
+        >
         <slot name="bottom" />
       </div>
       <el-pagination
@@ -247,7 +273,11 @@ export default {
       type: Boolean,
       default: false
     },
-
+    // 重置之后是否回调getList事件
+    autoReset: {
+      type: Boolean,
+      default: true
+    },
     /******** 表格属性 *********/
     // 表格数据
     tableData: {
@@ -478,7 +508,7 @@ export default {
           break
         case 'filter':
           // 重置过滤
-          if (isEmptyObj(this.sortParams)) return
+          if (isEmptyObj(this.filterParams)) return
           this.$emit('update:filterParams', {})
           this.$refs.dataTable.clearFilter()
           break
@@ -491,11 +521,26 @@ export default {
         default:
           break
       }
-
       // 重置会重新请求数据，需要重置勾选项
       this.$refs.dataTable.clearSelection()
       this.$emit('update:pagination', { ...this.pagination, page: 1 })
-      this.$emit('getList')
+      this.$emit('onReset')
+      if (this.autoReset) {
+        this.$emit('getList')
+      }
+    },
+    // 全部重置按钮
+    onResetClick() {
+      this.searchKey = ''
+      this.searchWord = ''
+      this.$emit('update:filterParams', {})
+      this.$refs.dataTable.clearFilter()
+      this.$refs.dataTable.clearSort()
+      this.$refs.dataTable.clearSelection()
+      this.$emit('onReset')
+      if (this.autoReset) {
+        this.$emit('getList')
+      }
     },
     // 批量删除功能
     onMutilDelete() {
@@ -558,14 +603,8 @@ export default {
   .right-block {
     @include flex-row;
     @include align-center;
-    .hidden-select,
-    .hidden-reset,
     .add-btn {
       margin-right: 5px;
-    }
-    .hidden-select {
-      max-width: 195px;
-      min-width: 120px;
     }
   }
 }
@@ -579,6 +618,25 @@ export default {
 .more-options-drawer {
   @include flex-column;
   padding: 10px 20px 20px;
+
+  .hidden-select-block {
+    @include flex-row;
+    @include align-center;
+    .hidden-select {
+      @include flex-main;
+      margin-left: 15px;
+    }
+  }
+  .btn-block {
+    @include flex-column;
+    .hidden-reset {
+      margin-bottom: 15px;
+      // width: 100%;
+      .el-button {
+        @include flex-main;
+      }
+    }
+  }
 }
 </style>
 
@@ -602,6 +660,21 @@ export default {
 
   .el-drawer__body {
     @include flex-column;
+  }
+  .more-options-drawer {
+    .btn-block {
+      .hidden-reset {
+        .el-button-group {
+          @include flex-row;
+          .el-button {
+            flex: 4;
+          }
+          .el-dropdown__caret-button {
+            flex: 1;
+          }
+        }
+      }
+    }
   }
 }
 </style>
