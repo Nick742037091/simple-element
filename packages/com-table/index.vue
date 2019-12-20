@@ -35,8 +35,7 @@
           class="search-btn"
           icon="el-icon-search"
           @click="onSearch"
-          >搜索</el-button
-        >
+        >搜索</el-button>
         <el-button
           v-if="showMoreBtn"
           :icon="showMore ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
@@ -44,8 +43,7 @@
           class="show-more-btn"
           :size="controlSize"
           @click="showMore = !showMore"
-          >更多选项</el-button
-        >
+        >更多选项</el-button>
       </div>
       <div class="search-middle">
         <slot name="search-middle" />
@@ -58,14 +56,9 @@
         class="add-btn right-block"
         icon="el-icon-circle-plus-outline"
         @click="$emit('onAdd')"
-        >新增
-      </el-button>
+      >新增</el-button>
     </div>
-    <el-drawer
-      :visible.sync="showMore"
-      title="更多选项"
-      v-bind="getMoreBlockProp()"
-    >
+    <el-drawer :visible.sync="showMore" title="更多选项" v-bind="getMoreBlockProp()">
       <div class="more-options-drawer flex-main">
         <div class="flex-main">
           <div class="hidden-select-block" v-if="showHide">
@@ -103,29 +96,14 @@
           >
             重置
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item
-                :size="controlSize"
-                command="filter"
-                icon="el-icon-arrow-down"
-              >
-                重置筛选项
-              </el-dropdown-item>
+              <el-dropdown-item :size="controlSize" command="filter" icon="el-icon-arrow-down">重置筛选项</el-dropdown-item>
               <el-dropdown-item
                 :size="controlSize"
                 command="search"
                 divided
                 icon="el-icon-search"
-              >
-                重置搜索
-              </el-dropdown-item>
-              <el-dropdown-item
-                :size="controlSize"
-                command="sort"
-                divided
-                icon="el-icon-sort"
-              >
-                重置排序
-              </el-dropdown-item>
+              >重置搜索</el-dropdown-item>
+              <el-dropdown-item :size="controlSize" command="sort" divided icon="el-icon-sort">重置排序</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-button
@@ -133,8 +111,7 @@
             icon="el-icon-success"
             :size="controlSize"
             @click="onMoreSumbit"
-            >确定
-          </el-button>
+          >确定</el-button>
         </div>
       </div>
     </el-drawer>
@@ -205,13 +182,7 @@
     <!-- 底部分页导航栏 -->
     <div v-if="showPagination" class="pagination-container">
       <div class="flex-main flex-row">
-        <el-button
-          v-if="showMutilDel"
-          :size="controlSize"
-          type="danger"
-          @click="onMutilDelete"
-          >批量删除</el-button
-        >
+        <el-button v-if="showMutilDel" :size="controlSize" type="danger" @click="onMutilDelete">批量删除</el-button>
         <slot name="bottom" />
       </div>
       <el-pagination
@@ -435,7 +406,7 @@ export default {
       get: function() {
         return this.tableColumn.reduce((list, item) => {
           if (item.hidden) {
-            list.push(item)
+            list.push(item.field)
           }
           return list
         }, [])
