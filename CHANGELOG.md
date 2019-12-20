@@ -1,3 +1,12 @@
+## [0.1.9](https://github.com/Nick742037091/simple-element/compare/v0.1.8...v0.1.9) (2019-12-20)
+
+
+### Bug Fixes
+
+* 修复com-table组件隐藏栏的bug ([8ea0617](https://github.com/Nick742037091/simple-element/commit/8ea0617468e1066e485993587b101ac9bff7b76c))
+
+
+
 ## [0.1.8](https://github.com/Nick742037091/simple-element/compare/v0.1.7...v0.1.8) (2019-12-20)
 
 
