@@ -2,8 +2,9 @@
   <div class="common-table">
     <!-- 顶部搜索栏 -->
     <div v-if="showSearchBar" class="search-bar">
-      <div class="left-block" v-if="showSearchBlock">
+      <div class="left-block">
         <el-select
+          v-if="showSearchBlock"
           v-model="searchKey"
           placeholder="请选择搜索类型"
           class="search-key"
@@ -19,6 +20,7 @@
           />
         </el-select>
         <el-input
+          v-if="showSearchBlock"
           v-model="searchWord"
           placeholder="请输入关键字"
           clearable
@@ -27,6 +29,7 @@
           :size="controlSize"
         />
         <el-button
+          v-if="showSearchBlock"
           type="primary"
           :size="controlSize"
           class="search-btn"
@@ -44,21 +47,19 @@
           >更多选项</el-button
         >
       </div>
-      <div class="middle-block">
+      <div class="search-middle">
         <slot name="search-middle" />
       </div>
 
-      <div class="right-block">
-        <el-button
-          v-if="showAdd"
-          type="success"
-          :size="controlSize"
-          class="add-btn"
-          icon="el-icon-circle-plus-outline"
-          @click="$emit('onAdd')"
-          >新增</el-button
-        >
-      </div>
+      <el-button
+        v-if="showAdd"
+        type="success"
+        :size="controlSize"
+        class="add-btn right-block"
+        icon="el-icon-circle-plus-outline"
+        @click="$emit('onAdd')"
+        >新增
+      </el-button>
     </div>
     <el-drawer
       :visible.sync="showMore"
@@ -67,10 +68,9 @@
     >
       <div class="more-options-drawer flex-main">
         <div class="flex-main">
-          <div class="hidden-select-block">
-            <div>隐藏字段</div>
+          <div class="hidden-select-block" v-if="showHide">
+            <div :style="controlFontStyle">隐藏字段</div>
             <el-select
-              v-if="showHide"
               :size="controlSize"
               v-model="hiddenTableColumn"
               placeholder="请选择隐藏字段"
@@ -97,23 +97,44 @@
             type="info"
             class="hidden-reset"
             split-button
+            placement="top-end"
             @command="onResetCommand"
             @click="onResetClick"
           >
             重置
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="filter" icon="el-icon-arrow-down">
+              <el-dropdown-item
+                :size="controlSize"
+                command="filter"
+                icon="el-icon-arrow-down"
+              >
                 重置筛选项
               </el-dropdown-item>
-              <el-dropdown-item command="search" divided icon="el-icon-search">
+              <el-dropdown-item
+                :size="controlSize"
+                command="search"
+                divided
+                icon="el-icon-search"
+              >
                 重置搜索
               </el-dropdown-item>
-              <el-dropdown-item command="sort" divided icon="el-icon-sort">
+              <el-dropdown-item
+                :size="controlSize"
+                command="sort"
+                divided
+                icon="el-icon-sort"
+              >
                 重置排序
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <el-button type="primary" @click="onMoreSumbit">确定</el-button>
+          <el-button
+            type="primary"
+            icon="el-icon-success"
+            :size="controlSize"
+            @click="onMoreSumbit"
+            >确定
+          </el-button>
         </div>
       </div>
     </el-drawer>
@@ -144,12 +165,10 @@
           :column-key="val.field"
           :label="columnName(val)"
           :prop="val.field"
-          :formatter="tableFormatter"
+          :formatter="tableFormatter && tableFormatter"
           :filters="tableFilters && tableFilters(val.field)"
           :filtered-value="filterValue(val.field)"
-          :filter-multiple="
-            tableFilterMultiple && tableFilterMultiple[val.field]
-          "
+          :filter-multiple="!val.singleFilter"
           :sortable="val.sortable"
           :width="val.width"
           :key="'table-column-' + key"
@@ -173,12 +192,10 @@
           :column-key="val.field"
           :prop="val.field"
           :label="columnName(val)"
-          :formatter="tableFormatter"
+          :formatter="tableFormatter && tableFormatter"
           :filters="tableFilters && tableFilters(val.field)"
           :filtered-value="filterValue(val.field)"
-          :filter-multiple="
-            tableFilterMultiple && tableFilterMultiple[val.field]
-          "
+          :filter-multiple="!val.singleFilter"
           :sortable="val.sortable"
           :width="val.width"
           :key="'table-column-' + key"
@@ -213,7 +230,14 @@
 
 <script>
 import Sortable from 'sortablejs'
-import { calShortcuts, isEmptyObj, error } from '@/utils'
+import {
+  calShortcuts,
+  isEmptyObj,
+  error,
+  mergeObserveObj,
+  clearObserveObj,
+  replaceObserveArray
+} from '@/utils'
 import moment from 'moment'
 
 export default {
@@ -224,7 +248,6 @@ export default {
       type: String,
       default: 'medium'
     },
-
     /******** 搜索栏属性 *********/
     // 搜索栏
     showSearchBar: {
@@ -268,7 +291,7 @@ export default {
       type: Boolean,
       default: true
     },
-    // 是否显示添加按键
+    // 是否显示新增按键
     showAdd: {
       type: Boolean,
       default: false
@@ -306,19 +329,12 @@ export default {
     // 表格格式化函数
     tableFormatter: {
       type: Function,
-      default: undefined
+      default: null
     },
     // 表格获取过滤参数的函数
     tableFilters: {
       type: Function,
-      default: undefined
-    },
-    // 表格支持多选的字段
-    tableFilterMultiple: {
-      type: Object,
-      default: () => {
-        return {}
-      }
+      default: null
     },
     // 表格已选择行
     selected: {
@@ -338,8 +354,8 @@ export default {
       default: false
     },
 
-    /******** 分页器属性 *********/
-    // 是否显示分页器
+    /******** 分页栏属性 *********/
+    // 是否显示分页栏
     showPagination: {
       type: Boolean,
       default: false
@@ -371,6 +387,23 @@ export default {
     }
   },
   computed: {
+    // 控件提示文字大小，设置比控件里的文字大1px
+    controlFontStyle() {
+      let fontSize = 14
+      switch (this.controlSize) {
+        case 'mini':
+        case 'small':
+          fontSize = 12
+          break
+        case 'medium':
+        case 'large':
+          fontSize = 14
+          break
+      }
+      return {
+        fontSize: fontSize + 1 + 'px'
+      }
+    },
     // 搜索栏所有字段
     defaultTableColumn() {
       return this.tableColumn.reduce((list, cur) => {
@@ -388,12 +421,24 @@ export default {
       })
       return map
     },
+    mutilFilters() {
+      const map = {}
+      this.tableColumn.forEach(item => {
+        if (item.mutilFilter) {
+          map[item.field] = true
+        }
+      })
+      return Map
+    },
     // 搜索栏隐藏字段
     hiddenTableColumn: {
       get: function() {
-        return this.tableColumn
-          .filter(item => item.hidden && item.field !== 'operation')
-          .map(item => item.field)
+        return this.tableColumn.reduce((list, item) => {
+          if (item.hidden) {
+            list.push(item)
+          }
+          return list
+        }, [])
       },
       set: function(newVal) {
         this.tableColumn.forEach(item => {
@@ -413,19 +458,13 @@ export default {
     },
     // 更新搜索参数
     searchKey(value) {
-      this.$emit('update:searchParams', {
-        key: value,
-        word: this.searchWord
-      })
+      this.searchParams.key = value
     },
     searchWord(value) {
-      this.$emit('update:searchParams', {
-        key: this.searchKey,
-        word: value
-      })
+      this.searchParams.word = value
     }
   },
-  async created() {},
+  mounted() {},
   methods: {
     getTableProp() {
       return {
@@ -458,42 +497,42 @@ export default {
     },
     // 修改分页每页长度
     onSizeChange(val) {
-      this.$emit('update:pagination', { ...this.pagination, listRows: val })
+      this.$set(this.pagination, 'listRows', val)
       this.$emit('getList')
     },
     // 修改分页页数
     onCurrentChange(val) {
-      this.$emit('update:pagination', { ...this.pagination, page: val })
+      this.$set(this.pagination, 'page', val)
       this.$emit('getList')
     },
     // 搜索参数已自动更新，需要在getList回调中使用
     onSearch() {
-      this.$emit('update:pagination', { ...this.pagination, page: 1 })
+      this.$set(this.pagination, 'page', 1)
       this.$emit('getList')
     },
     // 勾选操作
     onSelectionChange(selected) {
-      this.$emit('update:selected', selected)
+      replaceObserveArray(this.selected, selected)
     },
     // 修改过滤参数
     onFilterChange(filter) {
-      this.$emit('update:filterParams', { ...this.filterParams, ...filter })
-      this.$emit('update:pagination', { ...this.pagination, page: 1 })
+      mergeObserveObj(this.filterParams, filter)
+      this.$set(this.pagination, 'page', 1)
       this.$emit('getList')
     },
     // 修改排序参数
     onSortChange(sort) {
-      if (!sort.prop) {
-        // 重置排序参数
-        this.$emit('update:sortParams', {})
+      const key = [`sort[${sort.prop}]`]
+      if (!sort.order) {
+        // 删除排序参数
+        this.$delete(this.sortParams, key)
       } else {
         // 更新排序参数
-        this.$emit('update:sortParams', {
-          [`sort[${sort.prop}]`]: sort.order === 'ascending' ? 'asc' : 'desc'
-        })
+        const value = sort.order === 'ascending' ? 'asc' : 'desc'
+        this.$set(this.sortParams, key, value)
       }
       // 更改排序会使当前数据重新排序，但是完整列表需要重新排序，当前列表数据不正确，需要重新从第一页请求数据。
-      this.$emit('update:pagination', { ...this.pagination, page: 1 })
+      this.$set(this.pagination, 'page', 1)
       this.$emit('getList')
     },
     // 重置操作
@@ -509,13 +548,13 @@ export default {
         case 'filter':
           // 重置过滤
           if (isEmptyObj(this.filterParams)) return
-          this.$emit('update:filterParams', {})
+          clearObserveObj(this.filterParams)
           this.$refs.dataTable.clearFilter()
           break
         case 'sort':
           // 重置排序
           if (isEmptyObj(this.sortParams)) return
-          this.$emit('update:sortParams', {})
+          clearObserveObj(this.sortParams)
           this.$refs.dataTable.clearSort()
           break
         default:
@@ -523,7 +562,7 @@ export default {
       }
       // 重置会重新请求数据，需要重置勾选项
       this.$refs.dataTable.clearSelection()
-      this.$emit('update:pagination', { ...this.pagination, page: 1 })
+      this.$set(this.pagination, 'page', 1)
       this.$emit('onReset')
       if (this.autoReset) {
         this.$emit('getList')
@@ -533,12 +572,14 @@ export default {
     onResetClick() {
       this.searchKey = ''
       this.searchWord = ''
-      this.$emit('update:filterParams', {})
+      clearObserveObj(this.filterParams)
+      clearObserveObj(this.sortParams)
       this.$refs.dataTable.clearFilter()
       this.$refs.dataTable.clearSort()
       this.$refs.dataTable.clearSelection()
       this.$emit('onReset')
       if (this.autoReset) {
+        this.$set(this.pagination, 'paeg', 1)
         this.$emit('getList')
       }
     },
@@ -580,10 +621,11 @@ export default {
   @include flex-row;
   @include align-center;
   @include flex-wrap;
-  padding-bottom: 10px;
+
   .left-block {
     @include flex-row;
     @include align-center;
+    padding-bottom: 10px;
 
     .search-key,
     .search-input {
@@ -596,16 +638,13 @@ export default {
     }
   }
 
-  .middle-block {
-    @include flex-main;
+  .search-middle {
+    margin-bottom: 10px;
   }
-
-  .right-block {
-    @include flex-row;
-    @include align-center;
-    .add-btn {
-      margin-right: 5px;
-    }
+  .add-btn {
+    margin-left: auto;
+    margin-right: 5px;
+    margin-bottom: 10px;
   }
 }
 .common-table {

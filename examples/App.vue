@@ -4,16 +4,15 @@
       v-loading="loading"
       class="com-table"
       :search-fields="searchFields"
-      :search-params.sync="searchParams"
-      :time-params.sync="timeParams"
+      :search-params="searchParams"
       :table-data="tableData"
-      :table-column.sync="tableColumn"
+      :table-column="tableColumn"
       :table-formatter="tableFormatter"
       :table-filters="tableFilters"
-      :filter-params.sync="filterParams"
-      :sort-params.sync="sortParams"
-      :pagination.sync="pagination"
-      :selected.sync="selected"
+      :filter-params="filterParams"
+      :sort-params="sortParams"
+      :pagination="pagination"
+      :selected="selected"
       :tableProp="tableProp"
       show-more-btn
       show-search-bar
@@ -21,12 +20,16 @@
       show-add
       show-mutil-del
       draggable
-      :auto-reset="false"
+      :auto-reset="true"
+      :show-search-block="true"
       @getList="getList"
       @onAdd="showDialog = true"
       @onMoreSubmit="getList"
     >
-      <div slot="search-middle">搜索中间插槽</div>
+      <div slot="search-middle" class="flex-row">
+        <div class="text-block">搜索中间插槽</div>
+      </div>
+
       <template slot="table-custom" slot-scope="{ row, colKey }">
         <div v-if="colKey === 'operation'">
           <el-button type="primary" size="small">编辑</el-button>
@@ -65,12 +68,12 @@ export default {
         { type: 'selection' },
         { field: 'name', label: '姓名' },
         { field: 'phone', label: '手机' },
-        { field: 'sex', label: '性别' },
+        { field: 'sex', label: '性别', singleFilter: true },
         { field: 'age', label: '年龄', sortable: true },
         { field: 'operation', label: '操作', render: true, width: 150 }
       ],
       searchFields: ['name', 'phone'],
-      searchParams: { key: '', word: '' },
+      searchParams: { key: 'name', word: 'aaa' },
       pagination: {
         total: 1,
         listRows: 10,
@@ -124,5 +127,11 @@ export default {
 <style scoped lang="scss">
 .com-table {
   margin-top: 20px;
+}
+.search-middle {
+}
+.text-block {
+  width: 100px;
+  outline: 1px solid gray;
 }
 </style>
