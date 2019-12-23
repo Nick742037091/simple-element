@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <com-table
       v-loading="loading"
       class="com-table"
@@ -36,7 +36,9 @@
         </div>
       </template>
     </com-table>
+
     <custom-dialog v-model="showDialog" />
+    <el-backtop target=".app"></el-backtop>
   </div>
 </template>
 
@@ -53,23 +55,45 @@ const dataList = [
   { id: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
   { id: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
   { id: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { id: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { id: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { id: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { id: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { id: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { id: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { id: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { id: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { id: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { id: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { id: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { id: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
   { id: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 }
 ]
 export default {
   name: 'app',
-  components: { CustomDialog, ComTable },
+  components: {
+    CustomDialog,
+    ComTable
+  },
   data() {
     return {
       showDialog: false,
       loading: false,
       tableProp: {},
       tableColumn: [
-        { type: 'drag' },
         { type: 'selection' },
-        { field: 'name', label: '姓名' },
+        { field: 'name', label: '姓名', fixed: 'right' },
         { field: 'phone', label: '手机' },
         { field: 'sex', label: '性别', singleFilter: true },
-        { field: 'age', label: '年龄', sortable: true },
+        {
+          field: 'age',
+          label: '年龄',
+          sortable: true,
+          width: 1000,
+          render: true,
+          fixed: 'left'
+        },
+        { type: 'drag' },
         { field: 'operation', label: '操作', render: true, width: 150 }
       ],
       searchFields: ['name', 'phone'],
@@ -125,6 +149,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.app {
+  height: 100vh;
+  overflow: auto;
+}
 .com-table {
   margin-top: 20px;
 }

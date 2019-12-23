@@ -165,7 +165,7 @@
         <el-table-column
           v-else-if="!val.hidden && !val.render"
           :type="val.type"
-          :fixed="!!val.fixed"
+          :fixed="val.fixed"
           :column-key="val.field"
           :prop="val.field"
           :label="columnName(val)"
