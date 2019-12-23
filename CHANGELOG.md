@@ -1,3 +1,12 @@
+## [0.1.10](https://github.com/Nick742037091/simple-element/compare/v0.1.9...v0.1.10) (2019-12-23)
+
+
+### Bug Fixes
+
+* 修复com-table fixed的bug ([b22b312](https://github.com/Nick742037091/simple-element/commit/b22b3129044bbca14d4089c5141048dd20b665be))
+
+
+
 ## [0.1.9](https://github.com/Nick742037091/simple-element/compare/v0.1.8...v0.1.9) (2019-12-20)
 
 
