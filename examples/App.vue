@@ -89,9 +89,7 @@ export default {
           field: 'age',
           label: '年龄',
           sortable: true,
-          width: 1000,
-          render: true,
-          fixed: 'left'
+          render: true
         },
         { type: 'drag' },
         { field: 'operation', label: '操作', render: true, width: 150 }
