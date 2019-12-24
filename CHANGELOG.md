@@ -1,3 +1,12 @@
+## [0.1.11](https://github.com/Nick742037091/simple-element/compare/v0.1.10...v0.1.11) (2019-12-24)
+
+
+### Bug Fixes
+
+* 修复引入element-ui字体的bug ([5327732](https://github.com/Nick742037091/simple-element/commit/53277326d45aa5c070b5c61105a6b680a74e66ef))
+
+
+
 ## [0.1.10](https://github.com/Nick742037091/simple-element/compare/v0.1.9...v0.1.10) (2019-12-23)
 
 
