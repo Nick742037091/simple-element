@@ -26,6 +26,12 @@
       @onAdd="showDialog = true"
       @onMoreSubmit="getList"
     >
+      <div slot="search-front" class="flex-row">
+        <div class="text-block">搜索前置插槽</div>
+      </div>
+      <div slot="search-before-search" class="flex-row">
+        <div class="text-block">搜索按钮前置插槽</div>
+      </div>
       <div slot="search-middle" class="flex-row">
         <div class="text-block">搜索中间插槽</div>
       </div>
@@ -157,7 +163,7 @@ export default {
 .search-middle {
 }
 .text-block {
-  width: 100px;
+  // width: 100px;
   outline: 1px solid gray;
 }
 </style>

@@ -3,6 +3,10 @@
     <!-- 顶部搜索栏 -->
     <div v-if="showSearchBar" class="search-bar">
       <div class="left-block">
+        <div class="search-front">
+          <slot name="search-front" />
+        </div>
+
         <el-select
           v-if="showSearchBlock"
           v-model="searchKey"
@@ -28,6 +32,9 @@
           class="search-input"
           :size="controlSize"
         />
+        <div class="search-before-search">
+          <slot name="search-before-search" />
+        </div>
         <el-button
           v-if="showSearchBlock"
           type="primary"
@@ -44,9 +51,9 @@
           :size="controlSize"
           @click="showMore = !showMore"
         >更多选项</el-button>
-      </div>
-      <div class="search-middle">
-        <slot name="search-middle" />
+        <div class="search-middle">
+          <slot name="search-middle" />
+        </div>
       </div>
 
       <el-button
@@ -609,9 +616,11 @@ export default {
     }
   }
 
-  .search-middle {
-    margin-bottom: 10px;
+  .search-front,
+  .search-before-search {
+    margin-right: 5px;
   }
+
   .add-btn {
     margin-left: auto;
     margin-right: 5px;
