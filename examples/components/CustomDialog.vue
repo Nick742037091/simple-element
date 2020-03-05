@@ -11,6 +11,7 @@
       :form="form"
       :row-list="rowList"
       :loading="loading"
+      cancelBtnLabel="关闭"
       @submit="submit"
       @cancel="close"
     />
@@ -21,56 +22,6 @@
 import ComDialog from '@pkg/com-dialog'
 import ComForm from '@pkg/com-form'
 import formRules, { getRangeNumber } from '@/utils/formRules'
-
-// 表单选项
-const rowList = [
-  [
-    {
-      type: 'input',
-      label: '姓名',
-      prop: 'name',
-      required: true
-    },
-    {
-      type: 'input',
-      label: '手机号',
-      prop: 'phone',
-      required: true,
-      rules: [formRules.mobile]
-    }
-  ],
-  [
-    {
-      type: 'radio-group',
-      label: '性别',
-      prop: 'sex',
-      required: true,
-      options: [
-        { value: 0, label: '男' },
-        { value: 1, label: '女' }
-      ]
-    },
-    {
-      type: 'input-number',
-      label: '年龄',
-      prop: 'age',
-      required: true,
-      compProp: {
-        min: 0
-      },
-      rules: [getRangeNumber({ min: 0 })]
-    }
-  ],
-  [
-    {
-      type: 'input',
-      label: '备注',
-      prop: 'remark',
-      compProp: { type: 'textarea', rows: 3 },
-      width: '100%'
-    }
-  ]
-]
 
 const defaultForm = {
   name: '',
@@ -97,8 +48,72 @@ export default {
   data() {
     return {
       loading: false,
-      form: { ...defaultForm },
-      rowList
+      form: { ...defaultForm }
+    }
+  },
+  computed: {
+    // 表单选项
+    rowList() {
+      return [
+        [
+          {
+            type: 'input',
+            label: '姓名',
+            prop: 'name',
+            required: true,
+            hideLabel: true,
+            width: '100%'
+          }
+        ],
+        [
+          ({
+            type: 'input',
+            label: '姓名',
+            prop: 'name',
+            required: true
+          },
+          {
+            type: 'input',
+            label: '手机号',
+            prop: 'phone',
+            required: true,
+            rules: [formRules.mobile]
+          })
+        ],
+        [
+          {
+            type: 'radio-group',
+            label: '性别',
+            prop: 'sex',
+            required: true,
+            options: [
+              { value: 0, label: '男' },
+              { value: 1, label: '女' }
+            ]
+          },
+          {
+            type: 'input-number',
+            label: '年龄',
+            prop: 'age',
+            required: true,
+            compProp: {
+              min: 0
+            },
+            rules: [getRangeNumber({ min: 0 })],
+            hidden: this.form.sex === 1
+          }
+        ],
+        [
+          {
+            type: 'input',
+            label: '备注',
+            prop: 'remark',
+            compProp: { type: 'textarea', rows: 3 },
+            width: '100%',
+            labelWidth: '150px'
+          }
+        ]
+      ]
     }
   },
   watch: {

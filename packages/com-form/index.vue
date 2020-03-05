@@ -12,64 +12,71 @@
     <template v-else>
       <div v-for="(row, i_row) in rowList" :key="`row-${i_row}}`">
         <div v-if="Array.isArray(row)" class="com-form-row">
-          <com-form-item
+          <div
             v-for="(item, i_item) in row"
             :key="`fotm-item-${i_item}`"
-            :label-width="getLabelWidth(item)"
-            :label="getLabel(item)"
-            :prop="item.prop"
-            :required="item.required"
             :style="formItemStyle(item)"
-            :show-tool-tip="!!item.toolTipLabel"
-            :tool-tip-label="item.toolTipLabel"
-            class="com-form-item"
           >
-            <slot
-              v-if="item.render"
+            <com-form-item
+              v-if="!item.hidden"
+              :label-width="getLabelWidth(item)"
+              :label="getLabel(item)"
               :prop="item.prop"
-              :item="item"
-              :formData="form"
-              :indexRow="i_row"
-              :indexItem="i_item"
-              name="render-item"
-            />
-            <template v-else>
-              <el-radio-group
-                v-if="item.type === 'radio-group'"
-                v-model="form[item.prop]"
-                v-bind="getCompProp(item)"
-              >
-                <template v-if="item.options">
-                  <el-radio
-                    v-for="(opt, index) in item.options"
-                    :key="`${item.prop}-radio-${index}`"
-                    :label="opt.value"
-                    :disabled="opt.disabled"
-                  >{{ opt.label }}</el-radio>
-                </template>
-              </el-radio-group>
-              <component
-                v-else
-                :is="getCompName(item)"
-                v-model="form[item.prop]"
-                v-bind="getCompProp(item)"
+              :required="item.required"
+              :show-tool-tip="!!item.toolTipLabel"
+              :tool-tip-label="item.toolTipLabel"
+              class="com-form-item"
+            >
+              <slot
+                v-if="item.render"
+                :prop="item.prop"
+                :item="item"
+                :formData="form"
+                :indexRow="i_row"
+                :indexItem="i_item"
+                name="render-item"
               />
-            </template>
-          </com-form-item>
+              <template v-else>
+                <el-radio-group
+                  v-if="item.type === 'radio-group'"
+                  v-model="form[item.prop]"
+                  v-bind="getCompProp(item)"
+                >
+                  <template v-if="item.options">
+                    <el-radio
+                      v-for="(opt, index) in item.options"
+                      :key="`${item.prop}-radio-${index}`"
+                      :label="opt.value"
+                      :disabled="opt.disabled"
+                    >{{ opt.label }}</el-radio>
+                  </template>
+                </el-radio-group>
+                <component
+                  v-else
+                  :is="getCompName(item)"
+                  v-model="form[item.prop]"
+                  v-bind="getCompProp(item)"
+                />
+              </template>
+            </com-form-item>
+          </div>
         </div>
         <slot v-else-if="row.render" name="render-row" :type="row.type" :formData="form" />
       </div>
     </template>
 
     <div v-if="!$slots['bottom-btn']" class="btn-block">
-      <el-button
-        type="primary"
-        size="small"
-        native-type="submit"
-        :loading="loading"
-        @click="submit"
-      >{{ submitBtnLabel }}</el-button>
-      <el-button size="small" @click="cancel">{{ cancelBtnLabel }}</el-button>
+      <template v-if="showBottomBtn">
+        <el-button
+          v-if="showSubmitBtn"
+          type="primary"
+          size="small"
+          native-type="submit"
+          :loading="loading"
+          @click="submit"
+        >{{ submitBtnLabel }}</el-button>
+        <el-button v-if="showCancelBtn" size="small" @click="cancel">{{ cancelBtnLabel }}</el-button>
+      </template>
     </div>
     <slot v-else name="bottom-btn" />
   </el-form>
@@ -87,50 +94,76 @@ export default {
   components: { ComFormItem },
   filters: {},
   props: {
+    // 表单数据
     form: {
       type: Object,
       default: () => {
         return {}
       }
     },
+    // 表单元素和标题是否显示在同一行
     inline: {
       type: Boolean,
       default: false
     },
+    // 是否全部表单元素通过插槽插入，不使用自动生成组件功能
     renderAll: {
       type: Boolean,
       default: false
     },
+    // 表单校验规则，非空时才有效，与 renderAll 搭配使用
     rules: {
       type: Object,
       default: () => {
         return {}
       }
     },
+    // 表单元素标题位置，可选值：top/left/right
     labelPosition: {
       type: String,
       default: 'left'
     },
+    // 表单元素标题宽度
     labelWidth: {
       type: String,
       default: '100px'
     },
+    // 是否显示加载状态。加载时，表单区域会显示半透明，不可输入和点击
     loading: {
       type: Boolean,
       default: false
     },
+    // 可根据该属性自动生成表单元素
     rowList: {
       type: Array,
       default: () => []
     },
+    // 每一行容纳的表单元素数量
     rowLen: {
       type: Number,
       default: 2
     },
+    //显示底部确认和取消按钮
+    showBottomBtn: {
+      type: Boolean,
+      default: true
+    },
+    //显示底部确认按钮
+    showSubmitBtn: {
+      type: Boolean,
+      default: true
+    },
+    //显示底部取消按钮
+    showCancelBtn: {
+      type: Boolean,
+      default: true
+    },
+    // 确认按钮文字
     submitBtnLabel: {
       type: String,
       default: '确定'
     },
+    // 取消按钮文字
     cancelBtnLabel: {
       type: String,
       default: '取消'
@@ -187,6 +220,11 @@ export default {
   },
   methods: {
     formItemStyle(item) {
+      if (item.hidden) {
+        return {
+          width: '0px'
+        }
+      }
       const { width } = item
       if (width) {
         return { width }
