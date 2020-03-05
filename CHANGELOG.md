@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/Nick742037091/simple-element/compare/v0.2.3...v0.2.4) (2020-03-05)
+
+
+### Bug Fixes
+
+* 修复npm push 检测脚本的bug ([24d8722](https://github.com/Nick742037091/simple-element/commit/24d87222ec7c89c64f96252180c496cfe31efc73))
+
+
+
 ## [0.2.3](https://github.com/Nick742037091/simple-element/compare/v0.2.2...v0.2.3) (2020-03-05)
 
 
