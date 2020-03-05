@@ -72,6 +72,7 @@ Vue.use(SimpleElement)
 
 |    键值     |  类型   |                                  描述                                   |
 | :---------: | :-----: | :---------------------------------------------------------------------: |
+|   hidden    | boolean |                                是否隐藏                                 |
 |    type     | string  | 表单元素类型，可选值：input/textarea/date-picker/radio-group/com-select |
 |    label    | string  |                            表单元素标题内容                             |
 |    prop     | string  |                标识表单元素在 form 表单中对应的唯一属性                 |
