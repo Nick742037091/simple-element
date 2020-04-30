@@ -1,3 +1,12 @@
+## [0.2.5](https://github.com/Nick742037091/simple-element/compare/v0.2.4...v0.2.5) (2020-04-30)
+
+
+### Features
+
+* **com-table:** com-table支持自定义每页数量 ([c3324c0](https://github.com/Nick742037091/simple-element/commit/c3324c0b5962ba53854ef24f26123854b3723a96))
+
+
+
 ## [0.2.4](https://github.com/Nick742037091/simple-element/compare/v0.2.3...v0.2.4) (2020-03-05)
 
 
