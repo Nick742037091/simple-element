@@ -194,7 +194,7 @@
       </div>
       <el-pagination
         :current-page="pagination.page"
-        :page-sizes="[10, 20, 30, 50]"
+        :page-sizes="pageSizes"
         :page-size="pagination.limit"
         :total="pagination.total"
         background
@@ -343,6 +343,12 @@ export default {
       type: Object,
       default: () => {
         return {}
+      }
+    },
+    pageSizes: {
+      type: Object,
+      default: () => {
+        return [10, 20, 30, 50, 100]
       }
     },
     // 显示批量删除按键

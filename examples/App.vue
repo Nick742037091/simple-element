@@ -22,6 +22,7 @@
       draggable
       :auto-reset="true"
       :show-search-block="true"
+      :page-sizes="[5,10,20]"
       @getList="getList"
       @onAdd="showDialog = true"
       @onMoreSubmit="getList"
