@@ -1,3 +1,12 @@
+## [0.2.7](https://github.com/Nick742037091/simple-element/compare/v0.2.6...v0.2.7) (2020-05-09)
+
+
+### Bug Fixes
+
+* **com-table:** 修复分页参数的bug ([6824687](https://github.com/Nick742037091/simple-element/commit/68246876f9af90baa7984fb1e41cd48bee7edb21))
+
+
+
 ## [0.2.6](https://github.com/Nick742037091/simple-element/compare/v0.2.5...v0.2.6) (2020-05-09)
 
 
