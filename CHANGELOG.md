@@ -1,3 +1,12 @@
+## [0.2.6](https://github.com/Nick742037091/simple-element/compare/v0.2.5...v0.2.6) (2020-05-09)
+
+
+### Bug Fixes
+
+* **com-table:** 修复排序参数的bug ([594d2b9](https://github.com/Nick742037091/simple-element/commit/594d2b9c8ccff2f274f76b4b9462b15b773df416))
+
+
+
 ## [0.2.5](https://github.com/Nick742037091/simple-element/compare/v0.2.4...v0.2.5) (2020-04-30)
 
 
