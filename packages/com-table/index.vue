@@ -513,6 +513,7 @@ export default {
       } else {
         // 更新排序参数
         const value = sort.order === 'ascending' ? 'asc' : 'desc'
+        clearObserveObj(this.sortParams)
         this.$set(this.sortParams, key, value)
       }
       // 更改排序会使当前数据重新排序，但是完整列表需要重新排序，当前列表数据不正确，需要重新从第一页请求数据。

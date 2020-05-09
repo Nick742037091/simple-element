@@ -90,7 +90,7 @@ export default {
       tableColumn: [
         { type: 'selection' },
         { field: 'name', label: '姓名', fixed: 'right' },
-        { field: 'phone', label: '手机' },
+        { field: 'phone', label: '手机', sortable: true },
         { field: 'sex', label: '性别', singleFilter: true },
         {
           field: 'age',
