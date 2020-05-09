@@ -346,7 +346,7 @@ export default {
       }
     },
     pageSizes: {
-      type: Object,
+      type: Array,
       default: () => {
         return [10, 20, 30, 50, 100]
       }
