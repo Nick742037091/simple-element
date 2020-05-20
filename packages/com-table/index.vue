@@ -319,6 +319,11 @@ export default {
       type: Array,
       default: () => []
     },
+    // table组件的rowKey属性，draggable为true时必须
+    tableRowKey: {
+      type: String,
+      default: ''
+    },
     // table组件其他属性
     tableProp: {
       type: Object,
@@ -454,6 +459,7 @@ export default {
       return {
         fit: true,
         border: true,
+        rowKey: this.tableRowKey,
         ...this.tableProp
       }
     },

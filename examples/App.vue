@@ -14,6 +14,7 @@
       :pagination="pagination"
       :selected="selected"
       :tableProp="tableProp"
+      table-row-key="uid"
       show-more-btn
       show-search-bar
       show-pagination
@@ -56,24 +57,24 @@ import ComTable from '@pkg/com-table'
 const SexType = ['男', '女']
 
 const dataList = [
-  { id: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
-  { id: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { id: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 }
+  { uid: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 1, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 2, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 3, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 4, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
+  { uid: 5, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
+  { uid: 6, name: 'lily', phone: '12345678910', sex: 1, age: 26 }
 ]
 export default {
   name: 'app',
@@ -160,8 +161,8 @@ export default {
 .com-table {
   margin-top: 20px;
 }
-.search-middle {
-}
+// .search-middle {
+// }
 .text-block {
   // width: 100px;
   outline: 1px solid gray;

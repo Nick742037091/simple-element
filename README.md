@@ -33,16 +33,16 @@ Vue.use(SimpleElement)
 
 通用弹窗组件，内部实现滚动和关闭自动回滚到顶部的功能。用于作为组件根布局。
 
-|         属性         |   类型   | 默认值 |             描述              |
-| :------------------: | :------: | :----: | :---------------------------: |
-|       visible        |   bool   | false  |           是否可见            |
-|        title         |  string  |   ''   |             标题              |
-|       loading        |   bool   | false  |   是否显示标题栏的 loading    |
-| close-on-click-modal |   bool   | false  |     点击modal是否关闭弹窗     |
-|        width         |  string  |   ''   |           弹窗宽度            |
-|      max-height      |  string  | '70vh' |     弹窗内容区域最大高度      |
-|     before-close     | function |  null  |    点击关闭按钮的回调函数     |
-|       其他属性       |    --    |   --   | 自动绑定在内部el-dialog组件上 |
+|         属性         |   类型   | 默认值 |              描述               |
+| :------------------: | :------: | :----: | :-----------------------------: |
+|       visible        |   bool   | false  |            是否可见             |
+|        title         |  string  |   ''   |              标题               |
+|       loading        |   bool   | false  |    是否显示标题栏的 loading     |
+| close-on-click-modal |   bool   | false  |     点击 modal 是否关闭弹窗     |
+|        width         |  string  |   ''   |            弹窗宽度             |
+|      max-height      |  string  | '70vh' |      弹窗内容区域最大高度       |
+|     before-close     | function |  null  |     点击关闭按钮的回调函数      |
+|       其他属性       |    --    |   --   | 自动绑定在内部 el-dialog 组件上 |
 
 ### com-form
 
@@ -84,8 +84,8 @@ Vue.use(SimpleElement)
 | placeholder | string  |                   自定义 placeholder,为空时会自动生成                   |
 |  compProp   | object  |                  表单元素的相关属性，会直接透传给组件                   |
 |   options   |  array  |    用于如 radio-group 等的选项列表，不同类型会有不同的字段，详情如下    |
-|  hideLabel  | boolean |                        是否隐藏标题,默认为false                         |
-| labelWidth  | boolean |                标题宽度，不设置时取com-form的labelWidth                 |
+|  hideLabel  | boolean |                        是否隐藏标题,默认为 false                        |
+| labelWidth  | boolean |               标题宽度，不设置时取 com-form 的 labelWidth               |
 
 ##### radio-group 类型元素 options
 
@@ -96,10 +96,10 @@ Vue.use(SimpleElement)
 
 #### 回调事件
 
-|  事件  |     描述     | 参数  |
-| :----: | :----------: | :---: |
-| submit | 点击确认按钮 |   -   |
-| cancel | 点击取消按钮 |   -   |
+|  事件  |     描述     | 参数 |
+| :----: | :----------: | :--: |
+| submit | 点击确认按钮 |  -   |
+| cancel | 点击取消按钮 |  -   |
 
 #### 插槽
 
@@ -158,17 +158,18 @@ Vue.use(SimpleElement)
 
 #### 表格相关的属性
 
-|      属性      |   类型   | 默认值 |                                     描述                                     |
-| :------------: | :------: | :----: | :--------------------------------------------------------------------------: |
-|   tableData    |  array   |   []   |                                   表格数据                                   |
-|  tableColumn   |  array   |   []   |                                  表格列字段                                  |
-|  filterParams  |  object  |   {}   |                                 表格过滤参数                                 |
-|   sortParams   |  object  |   {}   |                                 表格排序参数                                 |
-| tableFormatter | function |  null  |     表格格式化函数，参考https://element.eleme.cn/#/zh-CN/component/table     |
-|  tableFilters  | function |  null  | 表格获取过滤参数的函数，参考https://element.eleme.cn/#/zh-CN/component/table |
-|    selected    |  array   |   []   |                                 表格已选择行                                 |
-|   tableProp    |  array   |   {}   |                              table 组件其他属性                              |
-|   draggable    | boolean  | false  |                               表格行是否可拖动                               |
+|      属性      |   类型   | 默认值 |                                          描述                                          |
+| :------------: | :------: | :----: | :------------------------------------------------------------------------------------: |
+|   tableData    |  array   |   []   |                                        表格数据                                        |
+|  tableColumn   |  array   |   []   |                                       表格列字段                                       |
+|  filterParams  |  object  |   {}   |                                      表格过滤参数                                      |
+|   sortParams   |  object  |   {}   |                                      表格排序参数                                      |
+| tableFormatter | function |  null  |          表格格式化函数，参考https://element.eleme.cn/#/zh-CN/component/table          |
+|  tableFilters  | function |  null  |      表格获取过滤参数的函数，参考https://element.eleme.cn/#/zh-CN/component/table      |
+|    selected    |  array   |   []   |                                      表格已选择行                                      |
+|   draggable    | boolean  | false  |                                    表格行是否可拖动                                    |
+|  tableRowKey   |  string  |   ''   | table 组件的 row-key 属性,对应于表格记录的唯一标识，draggable 设置为 true 之后是必需的 |
+|   tableProp    |  array   |   []   |                                   table 组件其他属性                                   |
 
 #### 分页栏相关的属性
 
@@ -180,13 +181,13 @@ Vue.use(SimpleElement)
 
 #### 回调事件
 
-|     事件     | 参数  |                                   描述                                   |
-| :----------: | :---: | :----------------------------------------------------------------------: |
-|   getList    |       | 请求列表事件，在点击搜索按钮、修改过滤、排序、分页和重置之后会回调该事件 |
-|    onAdd     |       |                      在点击新增按钮之后会回调该事件                      |
-|   onReset    |       |                      在点击重置按钮之后会回调该事件                      |
-|  onMutilDel  |       |                  在点击批量删除按钮重置之后会回调该事件                  |
-| onMoreSubmit |       |                 在点击侧弹的确认按钮重置之后会回调该事件                 |
+|     事件     | 参数 |                                   描述                                   |
+| :----------: | :--: | :----------------------------------------------------------------------: |
+|   getList    |      | 请求列表事件，在点击搜索按钮、修改过滤、排序、分页和重置之后会回调该事件 |
+|    onAdd     |      |                      在点击新增按钮之后会回调该事件                      |
+|   onReset    |      |                      在点击重置按钮之后会回调该事件                      |
+|  onMutilDel  |      |                  在点击批量删除按钮重置之后会回调该事件                  |
+| onMoreSubmit |      |                 在点击侧弹的确认按钮重置之后会回调该事件                 |
 
 #### 插槽
 
