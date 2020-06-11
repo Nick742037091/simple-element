@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/Nick742037091/simple-element/compare/v0.2.8...v0.3.0) (2020-06-11)
+
+
+### Performance Improvements
+
+* 减少打包文件大小 ([18b5f1a](https://github.com/Nick742037091/simple-element/commit/18b5f1ae82b3e6964f5db60c919c346cf95b88de))
+
+
+
 ## [0.2.8](https://github.com/Nick742037091/simple-element/compare/v0.2.7...v0.2.8) (2020-05-20)
 
 
