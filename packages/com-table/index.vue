@@ -216,7 +216,6 @@ import {
   clearObserveObj,
   replaceObserveArray
 } from '@/utils'
-import moment from 'moment'
 
 export default {
   name: 'ComTable',

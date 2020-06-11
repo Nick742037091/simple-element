@@ -86,7 +86,6 @@
 import { getPlaceholder } from './placeholder.js'
 import ComFormItem from '../com-form-item'
 import { error } from '@/utils'
-import { Message } from 'element-ui'
 
 const ClearableType = ['select', 'input', 'input-number', 'date-picker']
 export default {

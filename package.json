@@ -5,7 +5,7 @@
     "serve": "vue-cli-service serve --mode development --open",
     "lint": "vue-cli-service lint",
     "build:example": "vue-cli-service build --mode example",
-    "build:lib": "vue-cli-service build --mode lib --target lib  --formats commonjs src/index.js",
+    "build:lib": "vue-cli-service build --mode lib --target lib  src/index.js --formats commonjs --report",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commit": "git-cz",
     "pub": "bash ./build/git-release.sh && bash ./build/publish.sh"
@@ -13,10 +13,7 @@
   "main": "lib/simple-element.common.js",
   "dependencies": {
     "element-ui": "^2.13.0",
-    "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
     "normalize.css": "^8.0.1",
-    "sass-loader": "^8.0.0",
     "sortablejs": "^1.10.1",
     "vue": "^2.6.10",
     "vuex": "^3.1.2"
@@ -32,7 +29,9 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.13.0",
     "prettier": "^1.19.1",
+    "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   },
   "config": {

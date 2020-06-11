@@ -1,4 +1,4 @@
-import { Message } from 'element-ui'
+import Message from 'element-ui/packages/message/index.js'
 import Vue from 'vue'
 
 export const isEmptyObj = obj => {
