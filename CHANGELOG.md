@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/Nick742037091/simple-element/compare/v0.3.0...v0.3.1) (2020-06-16)
+
+
+### Bug Fixes
+
+* **com-table:** 修改每页显示条目个数的bug ([f8a9f12](https://github.com/Nick742037091/simple-element/commit/f8a9f12a88e3c063dfebb9baf4a66953eb26bcd0))
+
+
+
 # [0.3.0](https://github.com/Nick742037091/simple-element/compare/v0.2.8...v0.3.0) (2020-06-11)
 
 
