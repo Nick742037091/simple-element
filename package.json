@@ -10,7 +10,7 @@
     "commit": "git-cz",
     "pub": "bash ./build/git-release.sh && bash ./build/publish.sh"
   },
-  "main": "lib/simple-element.common.js",
+  "main": "lib/simple-element.umd.min.js",
   "dependencies": {
     "element-ui": "^2.13.0",
     "normalize.css": "^8.0.1",
