@@ -367,9 +367,6 @@ export default {
   },
   data() {
     return {
-      pickerOptions: {
-        shortcuts: calShortcuts
-      },
       draggableElement: null,
       // 模糊搜索
       searchKey: '',

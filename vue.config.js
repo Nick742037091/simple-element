@@ -3,6 +3,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 let config = {}
+let configureWebpack = {}
 const mode = process.env.MODE
 if (mode === 'example') {
   config = {
@@ -19,6 +20,20 @@ if (mode === 'example') {
   config = {
     outputDir: 'lib'
   }
+  configureWebpack = {
+    output: {
+      libraryExport: 'default',
+      library: 'SimpleElement'
+    },
+    externals: {
+      'element-ui': {
+        commonjs: 'element-ui',
+        commonjs2: 'element-ui',
+        amd: 'element-ui',
+        root: 'ELEMENT'
+      }
+    }
+  }
 }
 
 module.exports = {
@@ -28,6 +43,7 @@ module.exports = {
   devServer: {
     progress: false
   },
+  configureWebpack,
   chainWebpack: config => {
     config.resolve.alias
       .set('@pkg', resolve('packages'))
