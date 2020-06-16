@@ -1,3 +1,12 @@
+## [0.4.1](https://github.com/Nick742037091/simple-element/compare/v0.4.0...v0.4.1) (2020-06-16)
+
+
+### Bug Fixes
+
+* 修改package.json的main指向 ([0f00679](https://github.com/Nick742037091/simple-element/commit/0f00679add0209bd58a6cc485f9e692595ffbbb5))
+
+
+
 # [0.4.0](https://github.com/Nick742037091/simple-element/compare/v0.3.1...v0.4.0) (2020-06-16)
 
 
