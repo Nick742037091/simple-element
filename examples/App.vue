@@ -105,7 +105,7 @@ export default {
       searchParams: { key: 'name', word: 'aaa' },
       pagination: {
         total: 1,
-        listRows: 10,
+        listRows: 20,
         page: 1
       },
       filterParams: {},
@@ -144,7 +144,7 @@ export default {
       // 模拟表格分页
       this.pagination = {
         total: 100,
-        listRows: 10,
+        listRows: 20,
         page: this.pagination.page
       }
       this.loading = false

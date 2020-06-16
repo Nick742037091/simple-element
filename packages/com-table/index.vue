@@ -195,7 +195,7 @@
       <el-pagination
         :current-page="pagination.page"
         :page-sizes="pageSizes"
-        :page-size="pagination.limit"
+        :page-size="pagination.listRows"
         :total="pagination.total"
         background
         layout="total, sizes, prev, pager, next, jumper"
@@ -346,7 +346,11 @@ export default {
     pagination: {
       type: Object,
       default: () => {
-        return {}
+        return {
+          total: 1,
+          listRows: 10,
+          page: 1
+        }
       }
     },
     pageSizes: {
