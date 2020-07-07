@@ -86,6 +86,7 @@
 import { getPlaceholder } from './placeholder.js'
 import ComFormItem from '../com-form-item'
 import { error } from '@/utils'
+import formRules from '@/utils/formRules'
 
 const ClearableType = ['select', 'input', 'input-number', 'date-picker']
 export default {
@@ -184,7 +185,8 @@ export default {
       const map = {}
       for (const prop in this.itemMap) {
         const item = this.itemMap[prop]
-        const { required, rules, type } = item
+        const { required = false, requireType = 'string', rules, type } = item
+        if (!required) continue
         const emptyValidator = (rule, value, callback) => {
           // 加入loading的判断，避免页面打开时候报错
           if (!required || this.loading) return callback()
@@ -203,16 +205,22 @@ export default {
             callback()
           }
         }
-        // TODO 去除除非空校验之前的其他校验错误log
         // required的属性必须有默认值,避免空值报错
         map[prop] = rules || []
-        map[prop] = map[prop].concat([
-          {
-            required,
-            type: 'number',
-            validator: emptyValidator
-          }
-        ])
+        const requireOption = {}
+        switch (requireType) {
+          case 'string':
+            // input-number 也是作为字符串校验
+            requireOption = {
+              type: requireType,
+              validator: emptyValidator
+            }
+            break
+          case 'array':
+            requireOption = formRules.array
+            break
+        }
+        map[prop] = map[prop].concat(requireOption)
       }
       return map
     }

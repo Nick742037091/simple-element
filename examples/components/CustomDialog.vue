@@ -14,7 +14,13 @@
       cancelBtnLabel="关闭"
       @submit="submit"
       @cancel="close"
-    />
+    >
+      <template slot="render-item" slot-scope="{ prop }">
+        <el-checkbox-group v-if="prop === 'tags'" v-model="form.tags">
+          <el-checkbox v-for="(item,index) in tagList" :label="index" :key="`tag-${index}`">{{item}}</el-checkbox>
+        </el-checkbox-group>
+      </template>
+    </com-form>
   </com-dialog>
 </template>
 
@@ -28,7 +34,8 @@ const defaultForm = {
   phone: '',
   sex: 0,
   age: 0,
-  remark: ''
+  remark: '',
+  tags: []
 }
 
 export default {
@@ -48,7 +55,8 @@ export default {
   data() {
     return {
       loading: false,
-      form: { ...defaultForm }
+      form: { ...defaultForm },
+      tagList: ['篮球', '音乐', '编程']
     }
   },
   computed: {
@@ -111,6 +119,15 @@ export default {
             compProp: { type: 'textarea', rows: 3 },
             width: '100%',
             labelWidth: '150px'
+          }
+        ],
+        [
+          {
+            label: '标签',
+            prop: 'tags',
+            render: true,
+            required: true,
+            requireType: 'array'
           }
         ]
       ]

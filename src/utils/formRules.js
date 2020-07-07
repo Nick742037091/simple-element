@@ -61,17 +61,34 @@ export const getRangeNumber = option => {
   }
 }
 
+const phoneValidator = (rule, value, callback) => {
+  const { len } = rule
+  if (!value || (value && value.length !== len)) {
+    return callback(new Error('请输入正确的手机号'))
+  } else {
+    callback()
+  }
+}
+
+const arrayValidator = (rule, value, callback) => {
+  if (!value || (value && value.length === 0)) {
+    return callback(new Error('请选择至少一项'))
+  } else {
+    callback()
+  }
+}
+
 export default {
-  // 手机号码校验
-  mobile: {
-    len: 11,
-    message: '请输入正确的手机号',
-    trigger: 'blur'
-  },
   // 邮箱校验
+  // TODO 没有在回调函数拦截判断会有log
   emial: { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' },
   // 整型数字校验
+  // TODO 没有在回调函数拦截判断会有log
   number: { type: 'number', message: '请输入数字', trigger: 'blur' },
+  // 手机号码校验
+  mobile: { len: 11, trigger: 'blur', validator: phoneValidator },
   // 字符串和整型数字非零校验
-  nozero: { type: 'message', trigger: 'blur', validator: nozeroValidator }
+  nozero: { trigger: 'blur', validator: nozeroValidator },
+  // 数组校验
+  array: { type: 'array', validator: arrayValidator }
 }
