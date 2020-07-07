@@ -1,3 +1,12 @@
+## [0.4.4](https://github.com/Nick742037091/simple-element/compare/v0.4.3...v0.4.4) (2020-07-07)
+
+
+### Bug Fixes
+
+* **com-form:** com-form非空校验完善数组类型的提示 ([5dd77e2](https://github.com/Nick742037091/simple-element/commit/5dd77e2eef4a1faddf0b6442ba8774ad1b582dbf))
+
+
+
 ## [0.4.3](https://github.com/Nick742037091/simple-element/compare/v0.4.2...v0.4.3) (2020-07-04)
 
 
