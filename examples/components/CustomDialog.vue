@@ -74,19 +74,17 @@ export default {
           }
         ],
         [
-          ({
-            type: 'input',
-            label: '姓名',
-            prop: 'name',
-            required: true
-          },
           {
             type: 'input',
             label: '手机号',
             prop: 'phone',
             required: true,
-            rules: [formRules.mobile]
-          })
+            newline: true,
+            rules: [formRules.mobile],
+            width: '100%',
+            showToolTip: true,
+            toolTipLabel: '请输入手机号'
+          }
         ],
         [
           {

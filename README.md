@@ -70,23 +70,24 @@ Vue.use(SimpleElement)
 1. 对象，用于单独实现一行表单数组。值为{ render: true, type: xxx, ...}，即必须包含 render 属性且值为 true。
 2. 数组，对应的字段如下表。
 
-|    键值     |  类型   |                                  描述                                   |
-| :---------: | :-----: | :---------------------------------------------------------------------: |
-|   hidden    | boolean |                                是否隐藏                                 |
-|    type     | string  | 表单元素类型，可选值：input/textarea/date-picker/radio-group/com-select |
-|    label    | string  |                            表单元素标题内容                             |
-|    prop     | string  |                标识表单元素在 form 表单中对应的唯一属性                 |
-|  required   | boolean |                          表单元素是否不能为空                           |
-| requireType | string  |                  校验的数值类型，可选值：string/array                   |
-|    width    | string  |   表单元素宽度，支持百分比和带单位数值，不指定则为整行宽度除以 rowLen   |
-|  disabled   | boolean |                         是否设置为不可输入状态                          |
-|   render    | boolean |                        是否以插槽实现自定义渲染                         |
-|    rules    |  array  |                                校验规则                                 |
-| placeholder | string  |                   自定义 placeholder,为空时会自动生成                   |
-|  compProp   | object  |                  表单元素的相关属性，会直接透传给组件                   |
-|   options   |  array  |    用于如 radio-group 等的选项列表，不同类型会有不同的字段，详情如下    |
-|  hideLabel  | boolean |                        是否隐藏标题,默认为 false                        |
-| labelWidth  | boolean |               标题宽度，不设置时取 com-form 的 labelWidth               |
+|    键值     |  类型   |                                   描述                                   |
+| :---------: | :-----: | :----------------------------------------------------------------------: |
+|   hidden    | boolean |                                 是否隐藏                                 |
+|    type     | string  | 表单元素类型，可选值：input/textarea/date-picker/radio-group/com-select  |
+|    label    | string  |                             表单元素标题内容                             |
+|    prop     | string  |                 标识表单元素在 form 表单中对应的唯一属性                 |
+|  required   | boolean |                           表单元素是否不能为空                           |
+|   newline   | boolean | 设置表单元素换行并且铺满整行，只有在 com-form inline 设置为 false 时有效 |
+| requireType | string  |                   校验的数值类型，可选值：string/array                   |
+|    width    | string  |   表单元素宽度，支持百分比和带单位数值，不指定则为整行宽度除以 rowLen    |
+|  disabled   | boolean |                          是否设置为不可输入状态                          |
+|   render    | boolean |                         是否以插槽实现自定义渲染                         |
+|    rules    |  array  |                                 校验规则                                 |
+| placeholder | string  |                   自定义 placeholder,为空时会自动生成                    |
+|  compProp   | object  |                   表单元素的相关属性，会直接透传给组件                   |
+|   options   |  array  |    用于如 radio-group 等的选项列表，不同类型会有不同的字段，详情如下     |
+|  hideLabel  | boolean |                        是否隐藏标题,默认为 false                         |
+| labelWidth  | boolean |               标题宽度，不设置时取 com-form 的 labelWidth                |
 
 ##### radio-group 类型元素 options
 
@@ -128,15 +129,16 @@ Vue.use(SimpleElement)
 
 表单元素的包装层，封装了 tooltip。
 
-|     属性      |  类型   | 默认值  |                   描述                    |
-| :-----------: | :-----: | :-----: | :---------------------------------------: |
-|  showToolTip  |  bool   |  false  |             是否包装 tooltip              |
-| toolTipLabel  | string  |   ''    |               tooltip 内容                |
-|     label     | string  |   ''    |               表单元素标题                |
-|     prop      | string  |   ''    |               表单唯一标识                |
-|   required    | boolean |  false  |                 是否必需                  |
-|  labelWidth   | string  | '100px' |             表单元素标题宽度              |
-| labelPosition | string  | 'left'  | 表单元素标题位置，可选值为 left/right/top |
+|     属性      |  类型   | 默认值  |                                   描述                                   |
+| :-----------: | :-----: | :-----: | :----------------------------------------------------------------------: |
+|  showToolTip  |  bool   |  false  |                             是否包装 tooltip                             |
+| toolTipLabel  | string  |   ''    |                               tooltip 内容                               |
+|     label     | string  |   ''    |                               表单元素标题                               |
+|     prop      | string  |   ''    |                               表单唯一标识                               |
+|   required    | boolean |  false  |                                 是否必需                                 |
+|    newline    | boolean |  false  | 设置表单元素换行并且铺满整行，只有在 com-form inline 设置为 false 时有效 |
+|  labelWidth   | string  | '100px' |                             表单元素标题宽度                             |
+| labelPosition | string  | 'left'  |                表单元素标题位置，可选值为 left/right/top                 |
 
 ### com-table
 

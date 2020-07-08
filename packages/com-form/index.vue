@@ -25,7 +25,7 @@
               :required="item.required"
               :show-tool-tip="!!item.toolTipLabel"
               :tool-tip-label="item.toolTipLabel"
-              class="com-form-item"
+              :newline="item.newline"
             >
               <slot
                 v-if="item.render"
@@ -319,9 +319,6 @@ export default {
 .com-form-row {
   @include flex-row;
   @include align-center;
-  .com-form-item {
-    padding: 0 10px;
-  }
   // 扩展选择框宽度
   .el-input-number,
   .el-select,

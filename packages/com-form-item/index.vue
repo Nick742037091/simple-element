@@ -1,5 +1,5 @@
 <template>
-  <div class="com-form-item">
+  <div class="com-form-item-block" :class="{'com-form-item__newline': newline}">
     <el-tooltip
       v-if="showToolTip"
       :content="toolTipLabel || label"
@@ -11,6 +11,7 @@
         :label-width="labelWidth"
         :prop="prop"
         :required="required"
+        class="com-form-item"
       >
         <slot />
       </el-form-item>
@@ -21,6 +22,7 @@
       :label-width="labelWidth"
       :prop="prop"
       :required="required"
+      class="com-form-item"
     >
       <slot />
     </el-form-item>
@@ -58,6 +60,10 @@ export default {
     labelPosition: {
       type: String,
       default: 'left'
+    },
+    newline: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -72,8 +78,20 @@ export default {
 </script>
 
 <style lang="scss">
-.com-form-item {
+@import '@/assets/css/flex.scss';
+.com-form-item-block {
   padding: 0 10px;
+
+  //设置表单元素块换行并铺满整行
+  &.com-form-item__newline {
+    .com-form-item {
+      width: 100%;
+    }
+    .el-form-item__content {
+      clear: both;
+      margin-left: 0 !important;
+    }
+  }
 }
 .medium-tooltip {
   font-size: 15px;
