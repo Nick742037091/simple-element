@@ -1,3 +1,12 @@
+## [0.4.5](https://github.com/Nick742037091/simple-element/compare/v0.4.4...v0.4.5) (2020-07-08)
+
+
+### Features
+
+* **com-form:** 支持com-form表单元素换行 ([1e89609](https://github.com/Nick742037091/simple-element/commit/1e89609ce006b05cd6787364594e0052bb9032e5))
+
+
+
 ## [0.4.4](https://github.com/Nick742037091/simple-element/compare/v0.4.3...v0.4.4) (2020-07-07)
 
 
