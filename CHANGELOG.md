@@ -1,3 +1,12 @@
+## [0.4.6](https://github.com/Nick742037091/simple-element/compare/v0.4.5...v0.4.6) (2020-07-15)
+
+
+### Bug Fixes
+
+* **com-table:** 修复com-table拖动定位到同一个表格的bug ([c628605](https://github.com/Nick742037091/simple-element/commit/c62860592bb96f0c36b9c4df8e0a02db9359da59))
+
+
+
 ## [0.4.5](https://github.com/Nick742037091/simple-element/compare/v0.4.4...v0.4.5) (2020-07-08)
 
 
