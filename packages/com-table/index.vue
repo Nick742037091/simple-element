@@ -588,7 +588,7 @@ export default {
       this.$emit('onMoreSubmit')
     },
     setDraggable() {
-      const el = document.querySelectorAll(
+      const el = this.$el.querySelectorAll(
         '.el-table__body-wrapper > table > tbody'
       )[0]
       this.draggableElement = Sortable.create(el, {
