@@ -14,7 +14,7 @@
         <div v-if="Array.isArray(row)" class="com-form-row">
           <div
             v-for="(item, i_item) in row"
-            :key="`fotm-item-${i_item}`"
+            :key="`fotm-item-${item.prop}`"
             :style="formItemStyle(item)"
           >
             <com-form-item
