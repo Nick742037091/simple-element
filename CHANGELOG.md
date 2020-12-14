@@ -1,3 +1,12 @@
+## [0.4.7](https://github.com/Nick742037091/simple-element/compare/v0.4.6...v0.4.7) (2020-12-14)
+
+
+### Bug Fixes
+
+* **com-form:** 修改表格元素key ([8cf23bc](https://github.com/Nick742037091/simple-element/commit/8cf23bc653708b5cf128e5899ccd50be4e8b0519))
+
+
+
 ## [0.4.6](https://github.com/Nick742037091/simple-element/compare/v0.4.5...v0.4.6) (2020-07-15)
 
 
