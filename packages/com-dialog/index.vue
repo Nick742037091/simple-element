@@ -33,55 +33,55 @@ export default {
     // 是否显示弹窗
     visible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 点击关闭按钮的回调
     beforeClose: {
       type: Function,
-      default: null
+      default: null,
     },
     // 弹窗宽度
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     // 弹窗宽度，自动居中
     width: {
       type: String,
-      default: ''
+      default: '',
     },
     // 弹窗内容区域高度,自动居中
     maxHeight: {
       type: String,
-      default: '70vh'
+      default: '70vh',
     },
     // 是否显示标题的loading
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 点击modal是否关闭弹窗
     closeOnClickModal: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   // v-model单独使用
   model: {
     prop: 'visible',
-    event: 'setVisible'
+    event: 'setVisible',
   },
   data() {
     return {
-      content: null
+      content: null,
     }
   },
   computed: {
     dialogStyle() {
       return {
-        maxHeight: this.maxHeight
+        maxHeight: this.maxHeight,
       }
-    }
+    },
   },
   watch: {
     async visible(newVal) {
@@ -90,15 +90,15 @@ export default {
         const content = this.$refs.content
         content.scrollTo(0, 0)
       }
-    }
+    },
   },
   created() {},
   mounted() {},
   methods: {
     close() {
       this.$emit('setVisible', false)
-    }
-  }
+    },
+  },
 }
 </script>
 

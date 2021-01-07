@@ -42,7 +42,8 @@
           class="search-btn"
           icon="el-icon-search"
           @click="onSearch"
-        >搜索</el-button>
+          >搜索
+        </el-button>
         <el-button
           v-if="showMoreBtn"
           :icon="showMore ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
@@ -50,7 +51,8 @@
           class="show-more-btn"
           :size="controlSize"
           @click="showMore = !showMore"
-        >更多选项</el-button>
+          >更多选项
+        </el-button>
         <div class="search-middle">
           <slot name="search-middle" />
         </div>
@@ -63,9 +65,14 @@
         class="add-btn right-block"
         icon="el-icon-circle-plus-outline"
         @click="$emit('onAdd')"
-      >新增</el-button>
+        >新增
+      </el-button>
     </div>
-    <el-drawer :visible.sync="showMore" title="更多选项" v-bind="getMoreBlockProp()">
+    <el-drawer
+      :visible.sync="showMore"
+      title="更多选项"
+      v-bind="getMoreBlockProp()"
+    >
       <div class="more-options-drawer flex-main">
         <div class="flex-main">
           <div class="hidden-select-block" v-if="showHide">
@@ -103,14 +110,26 @@
           >
             重置
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item :size="controlSize" command="filter" icon="el-icon-arrow-down">重置筛选项</el-dropdown-item>
+              <el-dropdown-item
+                :size="controlSize"
+                command="filter"
+                icon="el-icon-arrow-down"
+                >重置筛选项
+              </el-dropdown-item>
               <el-dropdown-item
                 :size="controlSize"
                 command="search"
                 divided
                 icon="el-icon-search"
-              >重置搜索</el-dropdown-item>
-              <el-dropdown-item :size="controlSize" command="sort" divided icon="el-icon-sort">重置排序</el-dropdown-item>
+                >重置搜索
+              </el-dropdown-item>
+              <el-dropdown-item
+                :size="controlSize"
+                command="sort"
+                divided
+                icon="el-icon-sort"
+                >重置排序
+              </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-button
@@ -118,7 +137,8 @@
             icon="el-icon-success"
             :size="controlSize"
             @click="onMoreSumbit"
-          >确定</el-button>
+            >确定
+          </el-button>
         </div>
       </div>
     </el-drawer>
@@ -189,7 +209,13 @@
     <!-- 底部分页导航栏 -->
     <div v-if="showPagination" class="pagination-container">
       <div class="flex-main flex-row">
-        <el-button v-if="showMutilDel" :size="controlSize" type="danger" @click="onMutilDelete">批量删除</el-button>
+        <el-button
+          v-if="showMutilDel"
+          :size="controlSize"
+          type="danger"
+          @click="onMutilDelete"
+          >批量删除
+        </el-button>
         <slot name="bottom" />
       </div>
       <el-pagination
@@ -209,12 +235,11 @@
 <script>
 import Sortable from 'sortablejs'
 import {
-  calShortcuts,
   isEmptyObj,
   error,
   mergeObserveObj,
   clearObserveObj,
-  replaceObserveArray
+  replaceObserveArray,
 } from '@/utils'
 
 export default {
@@ -223,23 +248,23 @@ export default {
     // 按钮、输入框等控件的大小
     controlSize: {
       type: String,
-      default: 'medium'
+      default: 'medium',
     },
     /******** 搜索栏属性 *********/
     // 搜索栏
     showSearchBar: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 搜索栏搜索区域
     showSearchBlock: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 可搜索的字段
     searchFields: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     // 搜索参数
     searchParams: {
@@ -247,100 +272,100 @@ export default {
       default: () => {
         return {
           key: '',
-          word: ''
+          word: '',
         }
-      }
+      },
     },
     // 显示更多选项按钮
     showMoreBtn: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 更多选项drawer组件的属性
     moreBlockProp: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     // 是否显示隐藏区域
     showHide: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 是否显示新增按键
     showAdd: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 重置之后是否回调getList事件
     autoReset: {
       type: Boolean,
-      default: true
+      default: true,
     },
     /******** 表格属性 *********/
     // 表格数据
     tableData: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     // 表格列字段
     tableColumn: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     // 表格过滤的参数
     filterParams: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     // 表格排序参数
     sortParams: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     // 表格格式化函数
     tableFormatter: {
       type: Function,
-      default: null
+      default: null,
     },
     // 表格获取过滤参数的函数
     tableFilters: {
       type: Function,
-      default: null
+      default: null,
     },
     // 表格已选择行
     selected: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     // table组件的rowKey属性，draggable为true时必须
     tableRowKey: {
       type: String,
-      default: ''
+      default: '',
     },
     // table组件其他属性
     tableProp: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     // 表格行是否可拖动
     draggable: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /******** 分页栏属性 *********/
     // 是否显示分页栏
     showPagination: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 分页参数
     pagination: {
@@ -349,21 +374,21 @@ export default {
         return {
           total: 1,
           listRows: 10,
-          page: 1
+          page: 1,
         }
-      }
+      },
     },
     pageSizes: {
       type: Array,
       default: () => {
         return [10, 20, 30, 50, 100]
-      }
+      },
     },
     // 显示批量删除按键
     showMutilDel: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -372,7 +397,7 @@ export default {
       searchKey: '',
       searchWord: '',
       // 侧弹更多选项
-      showMore: false
+      showMore: false,
     }
   },
   computed: {
@@ -390,7 +415,7 @@ export default {
           break
       }
       return {
-        fontSize: fontSize + 1 + 'px'
+        fontSize: fontSize + 1 + 'px',
       }
     },
     // 搜索栏所有字段
@@ -433,8 +458,8 @@ export default {
         this.tableColumn.forEach(item => {
           this.$set(item, 'hidden', newVal.includes(item.field))
         })
-      }
-    }
+      },
+    },
   },
   watch: {
     async tableData(newVal) {
@@ -451,7 +476,7 @@ export default {
     },
     searchWord(value) {
       this.searchParams.word = value
-    }
+    },
   },
   mounted() {},
   methods: {
@@ -460,14 +485,14 @@ export default {
         fit: true,
         border: true,
         rowKey: this.tableRowKey,
-        ...this.tableProp
+        ...this.tableProp,
       }
     },
     getMoreBlockProp() {
       return {
         direction: 'rtl',
         size: '400px',
-        ...this.moreBlockProp
+        ...this.moreBlockProp,
       }
     },
     getColumnLabel(field) {
@@ -589,20 +614,20 @@ export default {
     },
     setDraggable() {
       const el = this.$el.querySelectorAll(
-        '.el-table__body-wrapper > table > tbody'
+        '.el-table__body-wrapper > table > tbody',
       )[0]
       this.draggableElement = Sortable.create(el, {
         onEnd: evt => {
           // 更新顺序
           const targetRow = this.tableData.splice(evt.oldIndex, 1)[0]
           this.tableData.splice(evt.newIndex, 0, targetRow)
-        }
+        },
       })
     },
     toggleRowSelection(...params) {
       this.$refs.dataTable.toggleRowSelection(...params)
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -37,7 +37,7 @@
         <div class="text-block">搜索中间插槽</div>
       </div>
 
-      <template slot="table-custom" slot-scope="{ row, colKey }">
+      <template slot="table-custom" slot-scope="{ colKey }">
         <div v-if="colKey === 'operation'">
           <el-button type="primary" size="small">编辑</el-button>
         </div>
@@ -74,13 +74,13 @@ const dataList = [
   { uid: 15, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
   { uid: 16, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
   { uid: 17, name: 'nick', phone: '12345678910', sex: 0, age: 28 },
-  { uid: 18, name: 'lily', phone: '12345678910', sex: 1, age: 26 }
+  { uid: 18, name: 'lily', phone: '12345678910', sex: 1, age: 26 },
 ]
 export default {
   name: 'app',
   components: {
     CustomDialog,
-    ComTable
+    ComTable,
   },
   data() {
     return {
@@ -96,23 +96,23 @@ export default {
           field: 'age',
           label: '年龄',
           sortable: true,
-          render: true
+          render: true,
         },
         { type: 'drag' },
-        { field: 'operation', label: '操作', render: true, width: 150 }
+        { field: 'operation', label: '操作', render: true, width: 150 },
       ],
       searchFields: ['name', 'phone'],
       searchParams: { key: 'name', word: 'aaa' },
       pagination: {
         total: 1,
         listRows: 20,
-        page: 1
+        page: 1,
       },
       filterParams: {},
       sortParams: {},
       selected: [],
       tableData: [],
-      timeParams: []
+      timeParams: [],
     }
   },
   created() {
@@ -127,7 +127,7 @@ export default {
           break
       }
     },
-    tableFormatter(row, column, value, index) {
+    tableFormatter(row, column, value) {
       switch (column.property) {
         case 'sex':
           return SexType[value]
@@ -145,11 +145,11 @@ export default {
       this.pagination = {
         total: 100,
         listRows: 20,
-        page: this.pagination.page
+        page: this.pagination.page,
       }
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -48,7 +48,8 @@
                       :key="`${item.prop}-radio-${index}`"
                       :label="opt.value"
                       :disabled="opt.disabled"
-                    >{{ opt.label }}</el-radio>
+                      >{{ opt.label }}
+                    </el-radio>
                   </template>
                 </el-radio-group>
                 <component
@@ -61,7 +62,12 @@
             </com-form-item>
           </div>
         </div>
-        <slot v-else-if="row.render" name="render-row" :type="row.type" :formData="form" />
+        <slot
+          v-else-if="row.render"
+          name="render-row"
+          :type="row.type"
+          :formData="form"
+        />
       </div>
     </template>
 
@@ -74,8 +80,11 @@
           native-type="submit"
           :loading="loading"
           @click="submit"
-        >{{ submitBtnLabel }}</el-button>
-        <el-button v-if="showCancelBtn" size="small" @click="cancel">{{ cancelBtnLabel }}</el-button>
+          >{{ submitBtnLabel }}
+        </el-button>
+        <el-button v-if="showCancelBtn" size="small" @click="cancel">{{
+          cancelBtnLabel
+        }}</el-button>
       </template>
     </div>
     <slot v-else name="bottom-btn" />
@@ -99,75 +108,75 @@ export default {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     // 表单元素和标题是否显示在同一行
     inline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 是否全部表单元素通过插槽插入，不使用自动生成组件功能
     renderAll: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 表单校验规则，非空时才有效，与 renderAll 搭配使用
     rules: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     // 表单元素标题位置，可选值：top/left/right
     labelPosition: {
       type: String,
-      default: 'left'
+      default: 'left',
     },
     // 表单元素标题宽度
     labelWidth: {
       type: String,
-      default: '100px'
+      default: '100px',
     },
     // 是否显示加载状态。加载时，表单区域会显示半透明，不可输入和点击
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 可根据该属性自动生成表单元素
     rowList: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     // 每一行容纳的表单元素数量
     rowLen: {
       type: Number,
-      default: 2
+      default: 2,
     },
     //显示底部确认和取消按钮
     showBottomBtn: {
       type: Boolean,
-      default: true
+      default: true,
     },
     //显示底部确认按钮
     showSubmitBtn: {
       type: Boolean,
-      default: true
+      default: true,
     },
     //显示底部取消按钮
     showCancelBtn: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 确认按钮文字
     submitBtnLabel: {
       type: String,
-      default: '确定'
+      default: '确定',
     },
     // 取消按钮文字
     cancelBtnLabel: {
       type: String,
-      default: '取消'
-    }
+      default: '取消',
+    },
   },
   computed: {
     itemMap() {
@@ -207,13 +216,13 @@ export default {
         }
         // required的属性必须有默认值,避免空值报错
         map[prop] = rules || []
-        const requireOption = {}
+        let requireOption = {}
         switch (requireType) {
           case 'string':
             // input-number 也是作为字符串校验
             requireOption = {
               type: requireType,
-              validator: emptyValidator
+              validator: emptyValidator,
             }
             break
           case 'array':
@@ -223,13 +232,13 @@ export default {
         map[prop] = map[prop].concat(requireOption)
       }
       return map
-    }
+    },
   },
   methods: {
     formItemStyle(item) {
       if (item.hidden) {
         return {
-          width: '0px'
+          width: '0px',
         }
       }
       const { width } = item
@@ -237,7 +246,7 @@ export default {
         return { width }
       }
       return {
-        width: (100 / this.rowLen).toFixed(3) + '%'
+        width: (100 / this.rowLen).toFixed(3) + '%',
       }
     },
     getLabel(item) {
@@ -264,7 +273,7 @@ export default {
     },
     getCompProp(item) {
       const res = {
-        placeholder: this.getItemPlaceholder(item)
+        placeholder: this.getItemPlaceholder(item),
       }
       // 默认clearable都设置为true
       if (ClearableType.includes(item.type)) {
@@ -297,8 +306,8 @@ export default {
     },
     cancel() {
       this.$emit('cancel')
-    }
-  }
+    },
+  },
 }
 </script>
 

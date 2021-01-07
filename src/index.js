@@ -17,7 +17,7 @@ const install = function(Vue) {
 
 export default {
   install,
-  version
+  version,
 }
 
 export { ComDialog, ComForm, ComFormItem, ComTable, formRules }

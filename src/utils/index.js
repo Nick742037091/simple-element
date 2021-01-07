@@ -17,7 +17,7 @@ export const listToFilters = list => {
   return list.map((item, index) => {
     return {
       text: item,
-      value: index
+      value: index,
     }
   })
 }
@@ -28,7 +28,7 @@ export const error = (message, options) => {
   Message.error({
     duration: MsgDuration,
     message,
-    ...options
+    ...options,
   })
 }
 
@@ -36,7 +36,7 @@ export const success = (message, options) => {
   Message.success({
     duration: MsgDuration,
     message,
-    ...options
+    ...options,
   })
 }
 
