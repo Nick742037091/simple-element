@@ -182,8 +182,8 @@
             <slot
               :row="row"
               :column="column"
-              :colKey="column.columnKey"
-              :val="row[column.columnKey]"
+              :colKey="val.field"
+              :val="row[val.field]"
               :index="$index"
               name="table-custom"
             />
