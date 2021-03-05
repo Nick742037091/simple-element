@@ -1,3 +1,12 @@
+## [0.4.9](https://github.com/Nick742037091/simple-element/compare/v0.4.8...v0.4.9) (2021-03-05)
+
+
+### Bug Fixes
+
+* **com-table:** 修复com-table动态列table-custom插槽传递colKey的bug ([711fc91](https://github.com/Nick742037091/simple-element/commit/711fc91f4fa2b5f68643fdd149f083d12cdc9971))
+
+
+
 ## [0.4.8](https://github.com/Nick742037091/simple-element/compare/v0.4.7...v0.4.8) (2021-01-07)
 
 
