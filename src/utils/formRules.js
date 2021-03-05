@@ -1,4 +1,4 @@
-const LogPref = '表格参数校验：'
+// const LogPref = '表格参数校验：'
 const SmallNum = 0.000001
 const nozeroValidator = (rule, value, callback) => {
   if (+value === 0) {
@@ -22,7 +22,7 @@ export const getRangeNumber = option => {
     larger === undefined &&
     less === undefined
   ) {
-    console.log(LogPref + '缺少最小值或者最大值')
+    // console.log(LogPref + '缺少最小值或者最大值')
     return {}
   }
 

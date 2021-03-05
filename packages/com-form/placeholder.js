@@ -11,7 +11,7 @@ const typePhrase = {
 
 export const addCompType = (comp, type) => {
   if (compType[comp]) {
-    console.log('组件placeholder类型已存在')
+    // console.log('组件placeholder类型已存在')
     return
   }
   compType[comp] = type
@@ -19,7 +19,7 @@ export const addCompType = (comp, type) => {
 
 export const removeCompType = comp => {
   if (!compType[comp]) {
-    console.log('组件placeholder类型不存在')
+    // console.log('组件placeholder类型不存在')
     return
   }
   delete compType[comp]
