@@ -1,3 +1,7 @@
+# [0.5.0](https://github.com/Nick742037091/simple-element/compare/v0.4.9...v0.5.0) (2021-03-05)
+
+
+
 ## [0.4.9](https://github.com/Nick742037091/simple-element/compare/v0.4.8...v0.4.9) (2021-03-05)
 
 
