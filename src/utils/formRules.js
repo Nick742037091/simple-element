@@ -31,7 +31,7 @@ export const getRangeNumber = option => {
       type: 'number',
       min,
       max,
-      message: `请输入${min}~${max}之间的数字`,
+      message: `请输入${min}~${max}之间的数字`
     }
   } else if (max !== undefined) {
     return { type: 'number', max, message: `请输入不大于${max}的数字` }
@@ -44,19 +44,19 @@ export const getRangeNumber = option => {
       type: 'number',
       min: larger + SmallNum,
       max: less - SmallNum,
-      message: `请输入大于${larger}，小于${less}之间的数字`,
+      message: `请输入大于${larger}，小于${less}之间的数字`
     }
   } else if (larger !== undefined) {
     return {
       type: 'number',
       min: larger + SmallNum,
-      message: `请输入大于${larger}的数字`,
+      message: `请输入大于${larger}的数字`
     }
   } else if (less !== undefined) {
     return {
       type: 'number',
       max: less - SmallNum,
-      message: `请输入小于${less}的数字`,
+      message: `请输入小于${less}的数字`
     }
   }
 }
@@ -90,5 +90,5 @@ export default {
   // 字符串和整型数字非零校验
   nozero: { trigger: 'blur', validator: nozeroValidator },
   // 数组校验
-  array: { type: 'array', validator: arrayValidator },
+  array: { type: 'array', validator: arrayValidator }
 }
