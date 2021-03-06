@@ -40,7 +40,7 @@ const defaultForm = {
   sex: 0,
   age: 0,
   remark: '',
-  tags: [],
+  tags: []
 }
 
 export default {
@@ -49,19 +49,19 @@ export default {
 
   model: {
     prop: 'show',
-    event: 'setShow',
+    event: 'setShow'
   },
   props: {
     show: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       loading: false,
       form: { ...defaultForm },
-      tagList: ['篮球', '音乐', '编程'],
+      tagList: ['篮球', '音乐', '编程']
     }
   },
   computed: {
@@ -75,8 +75,8 @@ export default {
             prop: 'name',
             required: true,
             hideLabel: true,
-            width: '100%',
-          },
+            width: '100%'
+          }
         ],
         [
           {
@@ -88,8 +88,8 @@ export default {
             rules: [formRules.mobile],
             width: '100%',
             showToolTip: true,
-            toolTipLabel: '请输入手机号',
-          },
+            toolTipLabel: '请输入手机号'
+          }
         ],
         [
           {
@@ -99,8 +99,8 @@ export default {
             required: true,
             options: [
               { value: 0, label: '男' },
-              { value: 1, label: '女' },
-            ],
+              { value: 1, label: '女' }
+            ]
           },
           {
             type: 'input-number',
@@ -108,11 +108,11 @@ export default {
             prop: 'age',
             required: true,
             compProp: {
-              min: 0,
+              min: 0
             },
             rules: [getRangeNumber({ min: 0 })],
-            hidden: this.form.sex === 1,
-          },
+            hidden: this.form.sex === 1
+          }
         ],
         [
           {
@@ -121,8 +121,8 @@ export default {
             prop: 'remark',
             compProp: { type: 'textarea', rows: 3 },
             width: '100%',
-            labelWidth: '150px',
-          },
+            labelWidth: '150px'
+          }
         ],
         [
           {
@@ -130,11 +130,11 @@ export default {
             prop: 'tags',
             render: true,
             required: true,
-            requireType: 'array',
-          },
-        ],
+            requireType: 'array'
+          }
+        ]
       ]
-    },
+    }
   },
   watch: {
     async show(value) {
@@ -143,7 +143,7 @@ export default {
         await this.$nextTick()
         this.$refs['com-form'].clearValidate()
       }
-    },
+    }
   },
   methods: {
     async submit() {
@@ -157,8 +157,8 @@ export default {
     },
     close() {
       this.$emit('setShow', false)
-    },
-  },
+    }
+  }
 }
 </script>
 

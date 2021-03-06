@@ -239,7 +239,7 @@ import {
   error,
   mergeObserveObj,
   clearObserveObj,
-  replaceObserveArray,
+  replaceObserveArray
 } from '@/utils'
 
 export default {
@@ -248,23 +248,23 @@ export default {
     // 按钮、输入框等控件的大小
     controlSize: {
       type: String,
-      default: 'medium',
+      default: 'medium'
     },
     /******** 搜索栏属性 *********/
     // 搜索栏
     showSearchBar: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 搜索栏搜索区域
     showSearchBlock: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // 可搜索的字段
     searchFields: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // 搜索参数
     searchParams: {
@@ -272,100 +272,100 @@ export default {
       default: () => {
         return {
           key: '',
-          word: '',
+          word: ''
         }
-      },
+      }
     },
     // 显示更多选项按钮
     showMoreBtn: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 更多选项drawer组件的属性
     moreBlockProp: {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     // 是否显示隐藏区域
     showHide: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // 是否显示新增按键
     showAdd: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 重置之后是否回调getList事件
     autoReset: {
       type: Boolean,
-      default: true,
+      default: true
     },
     /******** 表格属性 *********/
     // 表格数据
     tableData: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // 表格列字段
     tableColumn: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // 表格过滤的参数
     filterParams: {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     // 表格排序参数
     sortParams: {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     // 表格格式化函数
     tableFormatter: {
       type: Function,
-      default: null,
+      default: null
     },
     // 表格获取过滤参数的函数
     tableFilters: {
       type: Function,
-      default: null,
+      default: null
     },
     // 表格已选择行
     selected: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // table组件的rowKey属性，draggable为true时必须
     tableRowKey: {
       type: String,
-      default: '',
+      default: ''
     },
     // table组件其他属性
     tableProp: {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     // 表格行是否可拖动
     draggable: {
       type: Boolean,
-      default: false,
+      default: false
     },
 
     /******** 分页栏属性 *********/
     // 是否显示分页栏
     showPagination: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 分页参数
     pagination: {
@@ -374,21 +374,21 @@ export default {
         return {
           total: 1,
           listRows: 10,
-          page: 1,
+          page: 1
         }
-      },
+      }
     },
     pageSizes: {
       type: Array,
       default: () => {
         return [10, 20, 30, 50, 100]
-      },
+      }
     },
     // 显示批量删除按键
     showMutilDel: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -397,7 +397,7 @@ export default {
       searchKey: '',
       searchWord: '',
       // 侧弹更多选项
-      showMore: false,
+      showMore: false
     }
   },
   computed: {
@@ -415,7 +415,7 @@ export default {
           break
       }
       return {
-        fontSize: fontSize + 1 + 'px',
+        fontSize: fontSize + 1 + 'px'
       }
     },
     // 搜索栏所有字段
@@ -458,8 +458,8 @@ export default {
         this.tableColumn.forEach(item => {
           this.$set(item, 'hidden', newVal.includes(item.field))
         })
-      },
-    },
+      }
+    }
   },
   watch: {
     async tableData(newVal) {
@@ -476,7 +476,7 @@ export default {
     },
     searchWord(value) {
       this.searchParams.word = value
-    },
+    }
   },
   mounted() {},
   methods: {
@@ -485,14 +485,14 @@ export default {
         fit: true,
         border: true,
         rowKey: this.tableRowKey,
-        ...this.tableProp,
+        ...this.tableProp
       }
     },
     getMoreBlockProp() {
       return {
         direction: 'rtl',
         size: '400px',
-        ...this.moreBlockProp,
+        ...this.moreBlockProp
       }
     },
     getColumnLabel(field) {
@@ -614,20 +614,20 @@ export default {
     },
     setDraggable() {
       const el = this.$el.querySelectorAll(
-        '.el-table__body-wrapper > table > tbody',
+        '.el-table__body-wrapper > table > tbody'
       )[0]
       this.draggableElement = Sortable.create(el, {
         onEnd: evt => {
           // 更新顺序
           const targetRow = this.tableData.splice(evt.oldIndex, 1)[0]
           this.tableData.splice(evt.newIndex, 0, targetRow)
-        },
+        }
       })
     },
     toggleRowSelection(...params) {
       this.$refs.dataTable.toggleRowSelection(...params)
-    },
-  },
+    }
+  }
 }
 </script>
 

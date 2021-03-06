@@ -38,36 +38,36 @@ export default {
   props: {
     showToolTip: {
       type: Boolean,
-      default: false,
+      default: false
     },
     toolTipLabel: {
       type: String,
-      default: '',
+      default: ''
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     prop: {
       type: String,
-      default: '',
+      default: ''
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     labelWidth: {
       type: String,
-      default: '100px',
+      default: '100px'
     },
     labelPosition: {
       type: String,
-      default: 'left',
+      default: 'left'
     },
     newline: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {}
@@ -76,7 +76,7 @@ export default {
   watch: {},
   created() {},
   mounted() {},
-  methods: {},
+  methods: {}
 }
 </script>
 
